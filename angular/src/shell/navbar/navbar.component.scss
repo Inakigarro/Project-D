@@ -1,0 +1,10 @@
+$sidenav-width: 10%;
+$sidenav-content-width: calc(100% - $sidenav-width);
+
+mat-sidenav-container {
+    height: 100%;
+}
+
+mat-sidenav{
+    width: $sidenav-width;
+}

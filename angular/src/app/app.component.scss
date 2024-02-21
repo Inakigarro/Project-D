@@ -1,0 +1,12 @@
+$toolbar-height: 10%;
+$main-content-height: calc(100% - $toolbar-height);
+
+ig-toolbar {
+    display: block;
+    height: $toolbar-height;
+}
+
+ig-navbar {
+    display: block;
+    height: $main-content-height;
+}
