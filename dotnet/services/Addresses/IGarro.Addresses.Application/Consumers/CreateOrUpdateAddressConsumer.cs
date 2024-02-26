@@ -28,7 +28,7 @@ public class CreateOrUpdateAddressConsumer : IConsumer<CreateOrUpdateAddress>
 
         if (address is null)
         {
-            this.logger.LogInformation($"Creating a new address with correlationId: {data.CorrelationId}");
+            this.logger.LogInformation($"Creating a new address with data: {data}");
             address = new Address(data.CorrelationId);
             this.UpdateAddress(data, address);
 

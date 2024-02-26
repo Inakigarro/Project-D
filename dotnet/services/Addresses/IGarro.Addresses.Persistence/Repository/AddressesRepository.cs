@@ -6,7 +6,6 @@ namespace IGarro.Addresses.Persistence;
 public class AddressesRepository : IAddressesRepository
 {
     private readonly AddressesDbContext dbContext;
-    private bool disposed = false;
     
     public AddressesRepository(AddressesDbContext dbContext)
     {

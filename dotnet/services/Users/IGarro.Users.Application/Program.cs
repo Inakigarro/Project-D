@@ -1,12 +1,11 @@
 using System.Threading.Tasks;
-using IGarro.Addresses.Persistence;
-using IGarro.Services.Addresses.Application.Consumers;
+using IGarro.Users.Persistence;
 using Microsoft.Extensions.Hosting;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace IGarro.Services.Addresses.Application;
+namespace IGarro.Users.Application;
 
 public class Program
 {
@@ -17,14 +16,19 @@ public class Program
 
     public static IHostBuilder CreateHostBuilder(string[] args) =>
         Host.CreateDefaultBuilder(args)
-            .ConfigureServices((hostContext, services) =>
+            .ConfigureServices((_, services) =>
             {
+                services.AddAutoMapper(opts =>
+                {
+                    opts.AddProfile(new UserAutoMapperProfile());
+                });
                 services.AddMassTransit(x =>
                 {
                     x.SetKebabCaseEndpointNameFormatter();
 
-                    x.AddConsumer<CreateOrUpdateAddressConsumer, CreateOrUpdateAddressConsumerDefinition>();
-
+                    x.AddConsumer<CreateOrUpdateUsersConsumer, CreateOrUpdateUsersConsumerDefinition>();
+                    x.AddConsumer<GetAllUsersConsumer, GetAllUsersConsumerDefinition>();
+                    
                     x.UsingRabbitMq((ctx, cfg) =>
                     {
                         cfg.Host("localhost", "/", h =>
@@ -37,14 +41,14 @@ public class Program
                     });
                 });
 
-                services.AddDbContext<AddressesDbContext>(
+                services.AddDbContext<UsersDbContext>(
                     options =>
                     {
                         options.UseSqlServer(
                             "Server=localhost;Database=IG.Club;User Id=sa;Password=Development001;Trusted_Connection=True;TrustServerCertificate=True",
-                            assembly => assembly.MigrationsAssembly(typeof(AddressesDbContext).Assembly.FullName));
+                            assembly => assembly.MigrationsAssembly(typeof(UsersDbContext).Assembly.FullName));
                     });
 
-                services.AddScoped<IAddressesRepository, AddressesRepository>();
+                services.AddScoped<IUsersRepository, UsersRepository>();
             });
 }

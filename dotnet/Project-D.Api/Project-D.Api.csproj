@@ -19,6 +19,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\services\Addresses\IGarro.Addresses.Application.Contracts\IGarro.Addresses.Application.Contracts.csproj" />
+      <ProjectReference Include="..\services\Users\IGarro.Users.Application.Contracts\IGarro.Users.Application.Contracts.csproj" />
     </ItemGroup>
 
 </Project>
