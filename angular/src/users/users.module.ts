@@ -7,6 +7,8 @@ import { UserListComponent } from "./feature/user-list/user-list.component";
 import { ToolbarModule } from "../shell/toolbar/toolbar.module";
 import { StoreModule } from "@ngrx/store";
 import { USERS_FEATURE_KEY, usersReducer } from "./domain/state/users.reducer";
+import { EffectsModule } from "@ngrx/effects";
+import { UsersEffects } from "./domain/state/users.effects";
 
 const MaterialModules = [
     MatTableModule
@@ -24,7 +26,8 @@ const MaterialModules = [
         StoreModule.forFeature(
             USERS_FEATURE_KEY,
             usersReducer
-        )],
+        ),
+        EffectsModule.forFeature([UsersEffects])],
     exports: []
 })
 export class UsersModule {}

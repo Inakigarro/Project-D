@@ -1,5 +1,6 @@
-import { Action, createReducer } from "@ngrx/store";
+import { Action, createReducer, on } from "@ngrx/store";
 import { User } from "../../shared";
+import { UsersGenericActions } from "./users.actions";
 
 export const USERS_FEATURE_KEY = 'users';
 
@@ -19,6 +20,11 @@ export const initialState: UsersState = {
 
 const reducer = createReducer(
     initialState,
+    on(UsersGenericActions.usersListLoaded, (state, action) =>({
+        ...state,
+        usersLoaded: true,
+        usersList: action.usersList
+    }))
 );
 
 export function usersReducer(state: UsersState, action: Action){

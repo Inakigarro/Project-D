@@ -1,3 +1,4 @@
+@if (loaded$ | async) {
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="correlationId">
         <th mat-header-cell *matHeaderCellDef>ID</th>
@@ -14,3 +15,4 @@
     <tr mat-header-row *matHeaderRowDef="headers"></tr>
     <tr mat-row *matRowDef="let row; columns: headers"></tr>
 </table>
+}
