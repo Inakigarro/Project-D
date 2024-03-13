@@ -5,6 +5,8 @@ import { UsersRoutingComponent } from "./users-routing.component";
 import { MatTableModule } from '@angular/material/table'
 import { UserListComponent } from "./feature/user-list/user-list.component";
 import { ToolbarModule } from "../shell/toolbar/toolbar.module";
+import { StoreModule } from "@ngrx/store";
+import { USERS_FEATURE_KEY, usersReducer } from "./domain/state/users.reducer";
 
 const MaterialModules = [
     MatTableModule
@@ -18,7 +20,11 @@ const MaterialModules = [
         CommonModule,
         ToolbarModule,
         MaterialModules,
-        UsersRoutingModule],
+        UsersRoutingModule,
+        StoreModule.forFeature(
+            USERS_FEATURE_KEY,
+            usersReducer
+        )],
     exports: []
 })
 export class UsersModule {}
