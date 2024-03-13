@@ -3,7 +3,7 @@ import { Query, gql } from "apollo-angular";
 import { User } from "../../../shared";
 
 export interface Users{
-    data: User[]
+    users: User[]
 }
 
 @Injectable({

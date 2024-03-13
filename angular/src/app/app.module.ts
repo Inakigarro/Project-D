@@ -12,7 +12,8 @@ import { APOLLO_OPTIONS, ApolloModule } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 import { InMemoryCache } from '@apollo/client/core'
 import { HttpClientModule } from '@angular/common/http';
-import { uri } from './graphql.module'
+import { uri } from './graphql.module';
+import { StoreModule } from '@ngrx/store'
 
 @NgModule({
     declarations: [AppComponent],
@@ -24,7 +25,8 @@ import { uri } from './graphql.module'
         ToolbarModule,
         NavbarModule,
         RouterOutlet,
-        AppRoutingModule],
+        AppRoutingModule,
+        StoreModule.forRoot({}, {})],
     exports: [],
     providers: [
       provideAnimationsAsync(),

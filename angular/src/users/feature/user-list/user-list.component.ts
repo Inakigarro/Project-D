@@ -24,16 +24,12 @@ const users : User[] = [
 })
 export class UserListComponent implements OnInit {
     public dataSource = new MatTableDataSource<User>();
-    public headers = ['correlationId', 'displayName', 'email'];
-    constructor(
-        private apollo: Apollo,
-        private usersQuery: UsersQuery){
-            // this.dataSource.data = users;
-        }
+    public headers = ['displayName', 'email'];
+    constructor(private usersQuery: UsersQuery){}
 
     public ngOnInit(): void {
         this.usersQuery.watch().valueChanges.subscribe(({data, loading}) => {
-            this.dataSource.data = data.data
+            this.dataSource.data = data.users
         })
     }
 }

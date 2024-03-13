@@ -50,7 +50,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors(options => options.WithOrigins("http://localhost:4200").AllowAnyMethod());
+app.UseCors(policyBuilder =>
+{
+    policyBuilder.WithOrigins("http://localhost:4200").AllowAnyMethod();
+    policyBuilder.WithHeaders("content-type");
+});
 app.UseHttpsRedirection();
 app.UseAuthorization();
 
