@@ -1,5 +1,4 @@
 using System.Reflection;
-using IGarro.Addresses.Application.Contracts;
 using MassTransit;
 using Project_D.Api.GraphQl;
 using Project_D.Api.Services;
@@ -23,10 +22,9 @@ builder.Services.AddMassTransit(x =>
             h.Username("guest");
             h.Password("guest");
         });
-                        
+        
         cfg.ConfigureEndpoints(ctx);
     });
-    x.AddRequestClient<CreateOrUpdateAddress>(new Uri("exchange:create-or-update-address"));
 });
 
 builder.Services.AddControllers();
@@ -36,11 +34,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddGraphQLServer()
     .AddQueryType<Query>()
+    .AddMutationType<Mutation>()
     .AddType<UserType>()
-    .AddTypeExtension<AddressQueryExtension>()
     .AddTypeExtension<UsersQueryResolver>()
-    .AddMutationType<Mutation>();
-
+    .AddTypeExtension<CreateUserMutationExtension>();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
