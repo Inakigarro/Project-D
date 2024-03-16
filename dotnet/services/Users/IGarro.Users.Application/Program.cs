@@ -26,7 +26,7 @@ public class Program
                 {
                     x.SetKebabCaseEndpointNameFormatter();
 
-                    x.AddConsumer<CreateOrUpdateUsersConsumer, CreateOrUpdateUsersConsumerDefinition>();
+                    x.AddConsumer<CreateOrUpdateUserConsumer, CreateOrUpdateUserConsumerDefinition>();
                     x.AddConsumer<GetAllUsersConsumer, GetAllUsersConsumerDefinition>();
                     
                     x.UsingRabbitMq((ctx, cfg) =>

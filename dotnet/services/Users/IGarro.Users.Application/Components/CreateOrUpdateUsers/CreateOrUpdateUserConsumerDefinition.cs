@@ -2,11 +2,15 @@ using MassTransit;
 
 namespace IGarro.Users.Application;
 
-public class CreateOrUpdateUsersConsumerDefinition : ConsumerDefinition<CreateOrUpdateUsersConsumer>
+public class CreateOrUpdateUserConsumerDefinition : ConsumerDefinition<CreateOrUpdateUserConsumer>
 {
+    public CreateOrUpdateUserConsumerDefinition()
+    {
+        EndpointName = "create-or-update-user";
+    }
     protected override void ConfigureConsumer(
         IReceiveEndpointConfigurator endpointConfigurator,
-        IConsumerConfigurator<CreateOrUpdateUsersConsumer> consumeConfigurator,
+        IConsumerConfigurator<CreateOrUpdateUserConsumer> consumeConfigurator,
         IRegistrationContext context)
     {
         base.ConfigureConsumer(endpointConfigurator, consumeConfigurator, context);

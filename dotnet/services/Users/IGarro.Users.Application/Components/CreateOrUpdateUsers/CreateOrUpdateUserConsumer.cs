@@ -7,14 +7,14 @@ using Microsoft.Extensions.Logging;
 
 namespace IGarro.Users.Application;
 
-public class CreateOrUpdateUsersConsumer : IConsumer<CreateOrUpdateUser>
+public class CreateOrUpdateUserConsumer : IConsumer<CreateOrUpdateUser>
 {
     private readonly IUsersRepository userRepository;
-    private readonly ILogger<CreateOrUpdateUsersConsumer> logger;
+    private readonly ILogger<CreateOrUpdateUserConsumer> logger;
     
-    public CreateOrUpdateUsersConsumer(
+    public CreateOrUpdateUserConsumer(
         IUsersRepository userRepository,
-        ILogger<CreateOrUpdateUsersConsumer> logger)
+        ILogger<CreateOrUpdateUserConsumer> logger)
     {
         this.userRepository = userRepository;
         this.logger = logger;
@@ -42,19 +42,16 @@ public class CreateOrUpdateUsersConsumer : IConsumer<CreateOrUpdateUser>
             await this.userRepository.UpdateAsync(user);
         }
 
-        await context.Publish(new UserUpdated()
+        var userUpdated = new UserUpdated()
         {
             CorrelationId = user.CorrelationId,
             DisplayName = user.DisplayName,
             Email = user.Email,
-        });
+        };
+        
+        await context.Publish(userUpdated);
 
-        await context.RespondAsync(new UserUpdated()
-        {
-            CorrelationId = user.CorrelationId,
-            DisplayName = user.DisplayName,
-            Email = user.Email,
-        });
+        await context.RespondAsync(userUpdated);
     }
 
     private void UpdateUser(CreateOrUpdateUser data, User user)
