@@ -1,0 +1,28 @@
+<mat-card class="formCard">
+    <mat-card-header>
+        <h1>
+            Create User
+        </h1>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="form" class="form">
+            <mat-form-field class="formField" hintLabel="This field is required">
+                <mat-label>Display Name</mat-label>
+                <input matInput [formControl]="displayNameControl">
+                @if (displayNameControl.invalid){
+                <mat-error>{{getDisplayNameErrorMessage()}}</mat-error>
+                }
+            </mat-form-field>
+            <mat-form-field class="formField" hintLabel="This field is required">
+                <mat-label>Email</mat-label>
+                <input matInput [formControl]="emailControl">
+                @if (emailControl.invalid){
+                <mat-error>{{getEmailErrorMessage()}}</mat-error>
+                }
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+    <mat-card-footer>
+        <button mat-raised-button (click)="saveUser()">Guardar</button>
+    </mat-card-footer>
+</mat-card>

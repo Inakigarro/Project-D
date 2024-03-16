@@ -1,3 +1,6 @@
+<mat-toolbar>
+    <button mat-raised-button (click)="openUserCreationDialog()"> New </button>
+</mat-toolbar>
 @if (loaded$ | async) {
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="correlationId">

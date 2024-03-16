@@ -1,0 +1,34 @@
+@if (button) {
+@switch (button.buttonDefinition.kind) {
+@case ('raised') {
+<button mat-raised-button>
+    @if (button.icon) {
+    <mat-icon>{{button.icon}}</mat-icon>
+    }
+    @if (button.label) {
+    <span>{{button.label}}</span>
+    }
+</button>
+}
+@case ('fab') {
+<button mat-fab-button>
+    @if (button.icon) {
+    <mat-icon>{{button.icon}}</mat-icon>
+    }
+    @if (button.label) {
+    <span>{{button.label}}</span>
+    }
+</button>
+}
+@default {
+<button mat-button>
+    @if (button.icon) {
+    <mat-icon>{{button.icon}}</mat-icon>
+    }
+    @if (button.label) {
+    <span>{{button.label}}</span>
+    }
+</button>
+}
+}
+}

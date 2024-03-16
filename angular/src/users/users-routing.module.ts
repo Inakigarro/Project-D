@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { UsersRoutingComponent } from "./users-routing.component";
 import { UserListComponent } from "./feature/user-list/user-list.component";
+import { UserCreationFormComponent } from "./feature/user-creation-form/user-creation-form.component";
 
 const routes : Routes = [
     {
@@ -10,7 +11,13 @@ const routes : Routes = [
         children: [
             {
                 path: '',
-                component: UserListComponent
+                component: UserListComponent,
+                children: [
+                    {
+                        path: 'new',
+                        component: UserCreationFormComponent
+                    }
+                ]
             }
         ]
     }

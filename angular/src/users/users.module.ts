@@ -9,18 +9,35 @@ import { StoreModule } from "@ngrx/store";
 import { USERS_FEATURE_KEY, usersReducer } from "./domain/state/users.reducer";
 import { EffectsModule } from "@ngrx/effects";
 import { UsersEffects } from "./domain/state/users.effects";
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatInputModule } from '@angular/material/input';
+import { UserCreationFormComponent } from "./feature/user-creation-form/user-creation-form.component";
+import { MatCardModule } from '@angular/material/card';
 
 const MaterialModules = [
-    MatTableModule
+    MatTableModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
 ]
 
 @NgModule({
     declarations: [
         UsersRoutingComponent,
-        UserListComponent],
+        UserListComponent,
+        UserCreationFormComponent],
     imports: [
         CommonModule,
         ToolbarModule,
+        ReactiveFormsModule,
+        FormsModule,
         MaterialModules,
         UsersRoutingModule,
         StoreModule.forFeature(

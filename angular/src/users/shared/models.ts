@@ -5,14 +5,12 @@ export interface User {
 }
 
 export interface CreateUser {
-    displayName: string;
-    email: string;
-    loginId: string;
+    displayName?: string;
+    email?: string;
 }
 
 export interface UpdateUser {
     correlationId: string;
     displayName: string;
     email: string;
-    loginId: string;
 }
