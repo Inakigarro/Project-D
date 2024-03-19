@@ -6,14 +6,14 @@
     </mat-card-header>
     <mat-card-content>
         <form [formGroup]="form" class="form">
-            <mat-form-field class="formField" hintLabel="This field is required">
+            <mat-form-field class="formField">
                 <mat-label>Display Name</mat-label>
                 <input matInput [formControl]="displayNameControl">
                 @if (displayNameControl.invalid){
                 <mat-error>{{getDisplayNameErrorMessage()}}</mat-error>
                 }
             </mat-form-field>
-            <mat-form-field class="formField" hintLabel="This field is required">
+            <mat-form-field class="formField">
                 <mat-label>Email</mat-label>
                 <input matInput [formControl]="emailControl">
                 @if (emailControl.invalid){

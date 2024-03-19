@@ -40,7 +40,7 @@ export class UserListComponent {
     public openUserCreationDialog() {
         this.userCreationDialog.open(UserCreationFormComponent, {
             width: '750px',
-            height: '500px'
+            height: 'auto'
         })
     }
 }
