@@ -44,3 +44,4 @@ Thumbs.db
 # Dotnet
 dotnet/**/bin
 dotnet/**/obj
+*storybook.log
