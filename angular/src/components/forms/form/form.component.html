@@ -1,0 +1,28 @@
+<mat-card>
+    <mat-card-header>{{formTitle}}</mat-card-header>
+    <mat-card-content>
+        <form>
+            @for (field of fields; track $index) {
+            <ig-form-field [formType]="field.type" [label]="field.label" [disabled]="field.disabled"></ig-form-field>
+            }
+        </form>
+    </mat-card-content>
+    <mat-card-footer>
+        @for (button of formButtons; track $index) {
+        @switch (button.buttonDefinition.type) {
+        @case ('submit') {
+        <ig-button [buttonDefinition]="button.buttonDefinition" [label]="button.label" [icon]="button.icon"
+            [disabled]="false" (executed)="onClick($event)"></ig-button>
+        }
+        @case ('reset') {
+        <ig-button [buttonDefinition]="button.buttonDefinition" [label]="button.label" [icon]="button.icon"
+            [disabled]="false" (executed)="onClick($event)"></ig-button>
+        }
+        @default {
+        <ig-button [buttonDefinition]="button.buttonDefinition" [label]="button.label" [icon]="button.icon"
+            [disabled]="false" (executed)="onClick($event)"></ig-button>
+        }
+        }
+        }
+    </mat-card-footer>
+</mat-card>

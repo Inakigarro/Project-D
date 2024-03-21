@@ -3,9 +3,9 @@ import { User } from "../../shared";
 import { MatTableDataSource } from "@angular/material/table";
 import { UsersService } from "../../domain/services/users.service";
 import { filter, map } from "rxjs";
-import { BasicButton } from '../../../buttons/shared';
 import { MatDialog } from "@angular/material/dialog";
 import { UserCreationFormComponent } from "../user-creation-form/user-creation-form.component";
+import { BasicButton } from "../../../components/buttons";
 
 @Component({
     selector: "ig-users-list",

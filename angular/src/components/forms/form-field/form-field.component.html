@@ -1,0 +1,14 @@
+@switch (formType) {
+@case ('text-area') {
+<mat-form-field>
+    <mat-label>{{label}}</mat-label>
+    <textarea matInput [disabled]="disabled"></textarea>
+</mat-form-field>
+}
+@default {
+<mat-form-field>
+    <mat-label>{{label}}</mat-label>
+    <input matInput [disabled]="disabled">
+</mat-form-field>
+}
+}
