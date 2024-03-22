@@ -1,6 +1,6 @@
 @switch (buttonDefinition.kind) {
 @case ('raised') {
-<button mat-raised-button [disabled]="disabled" (click)="executed.emit(label)">
+<button mat-raised-button [disabled]="disabled" (click)="executed.emit(action)">
     @if (icon) {
     <mat-icon>{{icon}}</mat-icon>
     }
@@ -10,7 +10,7 @@
 </button>
 }
 @case ('fab') {
-<button mat-fab [disabled]="disabled" (click)="executed.emit(label)">
+<button mat-fab [disabled]="disabled" (click)="executed.emit(action)">
     @if (icon) {
     <mat-icon>{{icon}}</mat-icon>
     }
@@ -20,7 +20,7 @@
 </button>
 }
 @default {
-<button mat-button [disabled]="disabled" (click)="executed.emit(label)">
+<button mat-button [disabled]="disabled" (click)="executed.emit(action)">
     @if (icon) {
     <mat-icon>{{icon}}</mat-icon>
     }
