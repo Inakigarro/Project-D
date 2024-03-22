@@ -29,12 +29,14 @@ export class UserCreationFormComponent implements OnInit {
                 name: 'displayName',
                 type: 'input',
                 defaultValue: '',
+                disabled: false,
                 validators: [Validators.required, Validators.maxLength(140)]
             })
             .addFormField({
                 name: 'email',
                 type: 'input',
                 defaultValue: '',
+                disabled: false,
                 validators: [Validators.required, Validators.maxLength(140), Validators.email]
             });
         this.form = this.dynamicFormBuilder.buildForm();
@@ -47,5 +49,9 @@ export class UserCreationFormComponent implements OnInit {
 
     public saveUser(){
         console.log(this.form.value);
+    }
+
+    public cancel(){
+        this.form.reset();
     }
 }

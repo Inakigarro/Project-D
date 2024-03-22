@@ -5,6 +5,7 @@ export interface DynamicFormField<TItem> {
     name: string & keyof TItem;
     type: string;
     defaultValue: unknown,
+    disabled: boolean,
     validators: Validators
 }
 
@@ -24,7 +25,7 @@ export class DynamicFormBuilder<TItem extends {}> {
     public buildForm() {
         this.formFields.forEach(field => {
             let control = this.formBuilder.control({
-                disabled: false,
+                disabled: field.disabled,
                 value: field.defaultValue
             },field.validators)
             this.formGroup.addControl(field.name, control);
