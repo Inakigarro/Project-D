@@ -10,7 +10,7 @@ export interface BasicButton {
     buttonDefinition: ButtonDefinition;
     label?:string;
     icon?:string;
-    disabled?: boolean;
+    disabled: boolean;
 }
 
 export interface FormButton extends BasicButton {

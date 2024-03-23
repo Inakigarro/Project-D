@@ -13,7 +13,8 @@ export const UsersGenericActions = createActionGroup({
 export const UserCreationAction = createActionGroup({
     source: "User Creation form",
     events: {
-        "Save button clicked": props<{createUser: CreateUser}>(),
+        "Save button clicked": emptyProps(),
+        "Cancel button clicked": emptyProps(),
         "User creation succeeded": props<{user: User}>(),
     }
 })

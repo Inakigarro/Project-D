@@ -1,7 +1,11 @@
-export type FormType = 'input' | 'select' | 'text-area'
+import { Validators } from "@angular/forms";
 
-export interface FormField {
-    type?: FormType;
-    label?: string;
-    disabled?: boolean;
+export type FormType = 'input' | 'text-area'
+
+export interface DynamicFormField<TItem> {
+    name: string & keyof TItem;
+    type: FormType;
+    defaultValue: unknown,
+    disabled: boolean,
+    validators: Validators
 }

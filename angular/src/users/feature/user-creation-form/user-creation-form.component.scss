@@ -6,6 +6,10 @@ mat-card-header {
     color:whitesmoke
 }
 
+mat-card-footer {
+    padding: 0px 16px 16px 16px;
+}
+
 .form {
     display: flex;
     flex-direction: column;
@@ -13,7 +17,6 @@ mat-card-header {
     align-content: flex-start;
     justify-content: center;
     align-items: flex-start;
-    height: 100%;
 }
 
 .formField {

@@ -22,6 +22,7 @@ export class UserListComponent {
                 kind: 'raised',
                 type: 'basic'
             },
+            disabled: false,
             label: 'New'
         }
     ];
@@ -38,9 +39,9 @@ export class UserListComponent {
     }
 
     public openUserCreationDialog() {
-        this.userCreationDialog.open(UserCreationFormComponent, {
-            width: '750px',
-            height: 'auto'
-        })
+        const dialogRef = this.userCreationDialog.open(UserCreationFormComponent, {
+            width: '35%',
+            height: 'auto',
+        });
     }
 }

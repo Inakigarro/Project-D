@@ -3,6 +3,7 @@ import { CreateUser } from "../../shared";
 import { FormGroup, Validators } from "@angular/forms";
 import { MatDialogRef } from "@angular/material/dialog";
 import { DynamicFormBuilder } from "../../../components/forms/form-builder/form-builder";
+import { UserCreationAction } from "../../domain/state/users.actions";
 
 const placeholder : CreateUser = {
     displayName: '',
@@ -16,12 +17,19 @@ const placeholder : CreateUser = {
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserCreationFormComponent implements OnInit {
-    public form : FormGroup;    
-    public fields = Object.keys(placeholder);
+    public form : FormGroup;
+    public formButtons = this.dynamicFormBuilder.formButtons;
+    public formFields = this.dynamicFormBuilder.formFields;
 
     constructor(
         private dynamicFormBuilder: DynamicFormBuilder<CreateUser>,
-        public dialogRef: MatDialogRef<UserCreationFormComponent>) {}
+        public dialogRef: MatDialogRef<UserCreationFormComponent, CreateUser>) {
+            this.dialogRef.beforeClosed().subscribe(
+                () => {
+                    this.form = this.dynamicFormBuilder.destroyForm();
+                }
+            ) 
+        }
     
     public ngOnInit(): void {
         this.dynamicFormBuilder
@@ -40,18 +48,5 @@ export class UserCreationFormComponent implements OnInit {
                 validators: [Validators.required, Validators.maxLength(140), Validators.email]
             });
         this.form = this.dynamicFormBuilder.buildForm();
-    }
-
-    public humanizeLabel(label: string){
-        let result = label.replace(/([a-z])([A-Z])/g, '$1 $2')
-        return result.charAt(0).toUpperCase() + result.slice(1);
-    }
-
-    public saveUser(){
-        console.log(this.form.value);
-    }
-
-    public cancel(){
-        this.form.reset();
     }
 }

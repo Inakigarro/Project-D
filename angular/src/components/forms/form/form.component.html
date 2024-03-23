@@ -1,28 +1,28 @@
 <mat-card>
-    <mat-card-header>{{formTitle}}</mat-card-header>
+    <mat-card-header>
+        <h1>{{formTitle}}</h1>
+    </mat-card-header>
     <mat-card-content>
-        <form>
-            @for (field of fields; track $index) {
-            <ig-form-field [formType]="field.type" [label]="field.label" [disabled]="field.disabled"></ig-form-field>
+        <form class="form" [formGroup]="formGroup">
+            @for (field of formFields; track $index) {
+            @if (field.type == 'input') {
+            <mat-form-field class="formField">
+                <mat-label>{{humanizeLabel(field.name)}}</mat-label>
+                <input matInput formControlName="{{field.name}}" />
+            </mat-form-field>
+            } @else {
+            <mat-form-field class="formField">
+                <mat-label>{{humanizeLabel(field.name)}}</mat-label>
+                <textarea matInput formControlName="{{field.name}}"></textarea>
+            </mat-form-field>
+            }
             }
         </form>
     </mat-card-content>
     <mat-card-footer>
         @for (button of formButtons; track $index) {
-        @switch (button.buttonDefinition.type) {
-        @case ('submit') {
         <ig-button [buttonDefinition]="button.buttonDefinition" [label]="button.label" [icon]="button.icon"
-            [disabled]="false" (executed)="onClick($event)"></ig-button>
-        }
-        @case ('reset') {
-        <ig-button [buttonDefinition]="button.buttonDefinition" [label]="button.label" [icon]="button.icon"
-            [disabled]="false" (executed)="onClick($event)"></ig-button>
-        }
-        @default {
-        <ig-button [buttonDefinition]="button.buttonDefinition" [label]="button.label" [icon]="button.icon"
-            [disabled]="false" (executed)="onClick($event)"></ig-button>
-        }
-        }
+            [disabled]="button.disabled" [action]="button.action" (executed)="onClick($event)"></ig-button>
         }
     </mat-card-footer>
 </mat-card>

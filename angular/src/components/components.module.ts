@@ -8,5 +8,6 @@ import { CustomFormsModule } from "./forms/custom-forms.module";
         CommonModule,
         ButtonsModule,
         CustomFormsModule],
+    exports: [CustomFormsModule, ButtonsModule]
 })
 export class ComponentsModule {}
