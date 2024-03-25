@@ -17,6 +17,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatInputModule } from '@angular/material/input';
 import { UserCreationFormComponent } from "./feature/user-creation-form/user-creation-form.component";
 import { MatCardModule } from '@angular/material/card';
+import { ComponentsModule } from "../components/components.module";
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const MaterialModules = [
     MatTableModule,
@@ -26,6 +28,7 @@ const MaterialModules = [
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
+    MatProgressSpinnerModule
 ]
 
 @NgModule({
@@ -40,6 +43,7 @@ const MaterialModules = [
         FormsModule,
         MaterialModules,
         UsersRoutingModule,
+        ComponentsModule,
         StoreModule.forFeature(
             USERS_FEATURE_KEY,
             usersReducer

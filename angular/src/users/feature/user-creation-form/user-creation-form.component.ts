@@ -1,54 +1,46 @@
-import { ChangeDetectionStrategy, Component } from "@angular/core";
-import { UsersService } from "../../domain/services/users.service";
-import { CreateUser, User } from "../../shared";
-import { FormBuilder, FormControl, Validators } from "@angular/forms";
-import { UserCreationAction, UsersGenericActions } from "../../domain/state/users.actions";
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from "@angular/core";
+import { CreateUser } from "../../shared";
+import { FormGroup, Validators } from "@angular/forms";
 import { MatDialogRef } from "@angular/material/dialog";
+import { DynamicFormBuilder } from "../../../components/forms/form-builder/form-builder";
+
+export const USER_CREATION_FORM_ID = 'user-creation-form';
 
 @Component({
     selector: 'ig-user-creation-form',
     templateUrl: './user-creation-form.component.html',
     styleUrl: './user-creation-form.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserCreationFormComponent {
-    public displayNameControl = new FormControl('', {validators: [Validators.required]});
-    public emailControl = new FormControl('', {
-        validators: [
-            Validators.required,
-            Validators.email]});
+export class UserCreationFormComponent implements OnInit, OnDestroy {
+    public formId = USER_CREATION_FORM_ID;
+    public form : FormGroup;
+    public formButtons = this.dynamicFormBuilder.formButtons;
+    public formFields = this.dynamicFormBuilder.formFields;
 
     constructor(
-        private readonly userService: UsersService,
-        private formBuilder: FormBuilder,
-        public dialogRef: MatDialogRef<UserCreationFormComponent>) {}
-
-    public form = this.formBuilder.group({
-        displayName: this.displayNameControl,
-        email: this.emailControl
-    });
-
-    public getDisplayNameErrorMessage() {
-        return this.displayNameControl.hasError('required') ? "You must enter a value" : ''
+        private dynamicFormBuilder: DynamicFormBuilder<CreateUser>,
+        public dialogRef: MatDialogRef<UserCreationFormComponent, CreateUser>) {}
+    
+    public ngOnInit(): void {
+        this.dynamicFormBuilder
+            .addFormField({
+                name: 'displayName',
+                type: 'input',
+                defaultValue: '',
+                disabled: false,
+                validators: [Validators.required, Validators.maxLength(140)]
+            })
+            .addFormField({
+                name: 'email',
+                type: 'input',
+                defaultValue: '',
+                disabled: false,
+                validators: [Validators.required, Validators.maxLength(140), Validators.email]
+            });
+        this.form = this.dynamicFormBuilder.buildForm();
     }
-    public getEmailErrorMessage(){
-        if (this.emailControl.hasError('required')) {
-            return 'You must enter a value';
-          }
-      
-          return this.emailControl.hasError('email') ? 'Not a valid email' : '';
-    }
 
-    public saveUser(){
-        if (this.form.valid) {
-            const formValue = this.form.value;
-            this.userService.dispatch(UserCreationAction.saveButtonClicked({
-                createUser: {
-                    displayName: formValue.displayName as string,
-                    email: formValue.email as string,
-                }
-            }))
-            this.dialogRef.close();
-        }
+    public ngOnDestroy(): void {
+        this.dynamicFormBuilder.destroyForm();
     }
 }

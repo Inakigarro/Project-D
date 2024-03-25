@@ -1,0 +1,31 @@
+<mat-card>
+    <mat-card-header>
+        <h1>{{formTitle}}</h1>
+    </mat-card-header>
+    <mat-card-content>
+        <form class="form" [formGroup]="formGroup">
+            @for (field of formFields; track $index) {
+            @if (field.type == 'input') {
+            <mat-form-field class="formField">
+                <mat-label>{{humanizeLabel(field.name)}}</mat-label>
+                <input matInput formControlName="{{field.name}}" />
+            </mat-form-field>
+            } @else {
+            <mat-form-field class="formField">
+                <mat-label>{{humanizeLabel(field.name)}}</mat-label>
+                <textarea matInput formControlName="{{field.name}}"></textarea>
+            </mat-form-field>
+            }
+            }
+        </form>
+    </mat-card-content>
+    <mat-card-footer class="form-footer">
+        <button mat-raised-button [disabled]="false" (click)="onSaveButtonClicked()">Save</button>
+        <button mat-button [disabled]="false" (click)="onResetButtonClicked()">Reset</button>
+        <button mat-button [disabled]="false" (click)="onCancelButtonClicked()">Cancel</button>
+        @for (button of formButtons; track $index) {
+        <ig-button [buttonDefinition]="button.buttonDefinition" [label]="button.label" [icon]="button.icon"
+            [disabled]="button.disabled" [action]="button.action" (executed)="onClick($event)"></ig-button>
+        }
+    </mat-card-footer>
+</mat-card>

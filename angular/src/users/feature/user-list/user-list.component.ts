@@ -3,9 +3,10 @@ import { User } from "../../shared";
 import { MatTableDataSource } from "@angular/material/table";
 import { UsersService } from "../../domain/services/users.service";
 import { filter, map } from "rxjs";
-import { BasicButton } from '../../../buttons/shared';
-import { MatDialog } from "@angular/material/dialog";
-import { UserCreationFormComponent } from "../user-creation-form/user-creation-form.component";
+import { MatDialog, } from "@angular/material/dialog";
+import { USER_CREATION_FORM_ID, UserCreationFormComponent } from "../user-creation-form/user-creation-form.component";
+import { BasicButton } from "../../../components/buttons";
+import { UserCreationActions } from "../../domain/state/users.actions";
 
 @Component({
     selector: "ig-users-list",
@@ -22,6 +23,7 @@ export class UserListComponent {
                 kind: 'raised',
                 type: 'basic'
             },
+            disabled: false,
             label: 'New'
         }
     ];
@@ -38,9 +40,12 @@ export class UserListComponent {
     }
 
     public openUserCreationDialog() {
-        this.userCreationDialog.open(UserCreationFormComponent, {
-            width: '750px',
-            height: 'auto'
-        })
+        this.usersService.dispatch(
+            UserCreationActions.openCreationDialog({
+                dialogConfig:{
+                    id: USER_CREATION_FORM_ID,
+                    width: '35%',
+                    height: 'auto',
+        }}))
     }
 }
