@@ -19,7 +19,10 @@
             }
         </form>
     </mat-card-content>
-    <mat-card-footer>
+    <mat-card-footer class="form-footer">
+        <button mat-raised-button [disabled]="false" (click)="onSaveButtonClicked()">Save</button>
+        <button mat-button [disabled]="false" (click)="onResetButtonClicked()">Reset</button>
+        <button mat-button [disabled]="false" (click)="onCancelButtonClicked()">Cancel</button>
         @for (button of formButtons; track $index) {
         <ig-button [buttonDefinition]="button.buttonDefinition" [label]="button.label" [icon]="button.icon"
             [disabled]="button.disabled" [action]="button.action" (executed)="onClick($event)"></ig-button>

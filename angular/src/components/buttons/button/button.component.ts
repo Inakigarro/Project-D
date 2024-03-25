@@ -21,7 +21,7 @@ export class ButtonComponent {
     public disabled : boolean = false;
 
     @Input()
-    public action: Action;
+    public action?: Action;
 
     @Output()
     public executed = new EventEmitter<Action>();

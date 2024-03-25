@@ -9,6 +9,7 @@ import { MatOptionModule } from "@angular/material/core";
 import { FormComponent } from "./form/form.component";
 import { ButtonsModule } from "../buttons";
 import { MatCardModule } from "@angular/material/card";
+import { MatButtonModule } from "@angular/material/button";
 
 @NgModule({
     imports: [
@@ -20,6 +21,7 @@ import { MatCardModule } from "@angular/material/card";
         MatSelect,
         MatOptionModule,
         MatCardModule,
+        MatButtonModule,
         ButtonsModule],
         declarations: [
             FormComponent,

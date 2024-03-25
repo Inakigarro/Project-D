@@ -18,4 +18,6 @@
     <tr mat-header-row *matHeaderRowDef="headers"></tr>
     <tr mat-row *matRowDef="let row; columns: headers"></tr>
 </table>
+} @else {
+<mat-spinner></mat-spinner>
 }

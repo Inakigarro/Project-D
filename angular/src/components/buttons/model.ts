@@ -14,5 +14,5 @@ export interface BasicButton {
 }
 
 export interface FormButton extends BasicButton {
-    action: Action;
+    action?: Action;
 }
