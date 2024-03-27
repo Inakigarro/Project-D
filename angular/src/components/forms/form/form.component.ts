@@ -1,21 +1,9 @@
-import { AfterViewInit, Component, Input, OnDestroy, OnInit } from "@angular/core";
-import { Action, Store, createAction, emptyProps, props } from "@ngrx/store";
+import { Component, Input, OnDestroy } from "@angular/core";
+import { Action, Store } from "@ngrx/store";
 import { FormButton } from "../../buttons";
 import { DynamicFormField } from "../model";
 import { FormGroup } from "@angular/forms";
 import { FormsActions } from "./state/form.actions";
-
-const saveAction = createAction(
-    '[Form] Save button clicked',
-    props<{id: string; data: any}>()
-);
-
-const cancelAction = createAction(
-    '[Form] Cancel button clicked',
-    props<{id: string;}>()
-)
-
-const BasicFormButtons = [];
 
 @Component({
     selector: 'ig-form',

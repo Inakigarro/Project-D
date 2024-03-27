@@ -21,6 +21,7 @@ function addUserOrdered(list: User[], user: User){
 export interface UsersState {
     usersLoaded: boolean;
     usersList: User[];
+    currentUser?: User;
 }
 
 export interface UsersPartialState {

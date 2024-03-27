@@ -1,6 +1,7 @@
 using System.Reflection;
 using MassTransit;
 using Project_D.Api.GraphQl;
+using Project_D.Api.GraphQl.UpdateUserMutation;
 using Project_D.Api.Services;
 
 const string allowedOrigin = "allowedOrigin";
@@ -37,7 +38,8 @@ builder.Services.AddGraphQLServer()
     .AddMutationType<Mutation>()
     .AddType<UserType>()
     .AddTypeExtension<UsersQueryResolver>()
-    .AddTypeExtension<CreateUserMutationExtension>();
+    .AddTypeExtension<CreateUserMutationExtension>()
+    .AddTypeExtension<UpdateUserMutationExtension>();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
