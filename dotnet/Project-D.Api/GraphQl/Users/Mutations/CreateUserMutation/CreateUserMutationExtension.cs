@@ -7,7 +7,7 @@ public class CreateUserMutationExtension : ObjectTypeExtension<Mutation>
         descriptor
             .Field("addUser")
             .ResolveWith<CreateUserMutationResolver>(m => m.AddUser(default))
-            .Argument("createUser", f => f.Type<UserInput>())
+            .Argument("createUser", f => f.Type<CreateUserInput>())
             .Type<UserType>();
     }
 }

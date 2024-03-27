@@ -1,10 +1,15 @@
 namespace IGarro.Users.Application.Contracts;
 
 /// <summary>
-/// GraphQL dto used to create a User.
+/// GraphQL dto used to update a User.
 /// </summary>
-public class CreateUser
+public record UpdateUser
 {
+    /// <summary>
+    /// Gets or sets the User Correlation Id.
+    /// </summary>
+    public Guid CorrelationId { get; set; }
+
     /// <summary>
     /// Gets or sets the User Display Name.
     /// </summary>
