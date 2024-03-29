@@ -1,23 +1,19 @@
 <mat-toolbar>
-    <button mat-raised-button (click)="openUserCreationDialog()"> New </button>
+	<button
+		mat-raised-button
+		(click)="openUserCreationDialog()"
+	>
+		New
+	</button>
 </mat-toolbar>
 @if (loaded$ | async) {
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    <ng-container matColumnDef="correlationId">
-        <th mat-header-cell *matHeaderCellDef>ID</th>
-        <td mat-cell *matCellDef="let element">{{element.correlationId}}</td>
-    </ng-container>
-    <ng-container matColumnDef="displayName">
-        <th mat-header-cell *matHeaderCellDef>Display Name</th>
-        <td mat-cell *matCellDef="let element">{{element.displayName}}</td>
-    </ng-container>
-    <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef>Email</th>
-        <td mat-cell *matCellDef="let element">{{element.email}}</td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="headers"></tr>
-    <tr mat-row *matRowDef="let row; columns: headers"></tr>
-</table>
+	<ig-list
+		[listId]="listId"
+		[listTitle]="listTitle"
+		[listHeaders]="listHeaders"
+		[listData]="listData"
+	>
+	</ig-list>
 } @else {
-<mat-spinner></mat-spinner>
+	<mat-spinner></mat-spinner>
 }

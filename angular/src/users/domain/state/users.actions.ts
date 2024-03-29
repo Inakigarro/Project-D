@@ -8,7 +8,8 @@ export const UsersGenericActions = createActionGroup({
         "Init": emptyProps(),
         "Users List Loaded": props<{usersList: User[]}>(),
         "Users List Updated": props<{user: User}>(),
-        "New User button clicked": emptyProps()
+        "New User button clicked": emptyProps(),
+        "Edit User button cliked": props<{listId: string; data: User}>()
     }
 })
 
