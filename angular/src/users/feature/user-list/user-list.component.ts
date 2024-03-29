@@ -18,17 +18,6 @@ export class UserListComponent {
     public listTitle = 'Users';
     public listHeaders : (string & keyof User | 'buttons')[] = ['displayName', 'email', "buttons"];
     public listData = this.usersService.usersList$;
-    public listToolbarButtons : BasicButton[] = [
-        {
-            buttonDefinition: {
-                buttonType: 'normal',
-                kind: 'raised',
-                type: 'basic'
-            },
-            disabled: false,
-            label: 'New'
-        }
-    ];
     public loaded$ = this.usersService.usersLoaded$;
 
     constructor(

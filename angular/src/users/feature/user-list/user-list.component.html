@@ -1,8 +1,19 @@
 <mat-toolbar>
-    <button mat-raised-button (click)="openUserCreationDialog()"> New </button>
+	<button
+		mat-raised-button
+		(click)="openUserCreationDialog()"
+	>
+		New
+	</button>
 </mat-toolbar>
 @if (loaded$ | async) {
-<ig-list [listId]="listId" [listTitle]="listTitle" [listHeaders]="listHeaders" [listData]="listData"></ig-list>
+	<ig-list
+		[listId]="listId"
+		[listTitle]="listTitle"
+		[listHeaders]="listHeaders"
+		[listData]="listData"
+	>
+	</ig-list>
 } @else {
-<mat-spinner></mat-spinner>
+	<mat-spinner></mat-spinner>
 }
