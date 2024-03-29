@@ -5,15 +5,20 @@ import { UserCreationActions, UsersGenericActions } from "./users.actions";
 import { filter, map, tap } from "rxjs";
 import { fetch, pessimisticUpdate } from '@nx/angular'
 import { AddUserMutation } from "../graphql/mutations/add-user-mutation";
-import { CreateUser, User } from "../../shared";
+import { CreateUser, UpdateUser, User } from "../../shared";
 import { FormsActions } from "../../../components/forms/form/state/form.actions";
 import { USER_CREATION_FORM_ID, UserCreationFormComponent } from "../../feature/user-creation-form/user-creation-form.component";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
+import { UsersService } from "../services/users.service";
+import { UserEditionFormComponent } from "../../feature/user-edition-form/user-edition-form.component";
+import { editRowButtonClicked } from "../../../components/lists/list/state/list.actions";
+import { USERS_LIST_ID } from "../../feature/user-list/user-list.component";
 
 @Injectable()
 export class UsersEffects {
-    private dialogRef : MatDialogRef<UserCreationFormComponent, CreateUser>;
-    
+    private createUserDialogRef : MatDialogRef<UserCreationFormComponent, CreateUser>;
+    private editUserDialogRef : MatDialogRef<UserEditionFormComponent, UpdateUser>;
+
     public initUsers$ = createEffect(() =>
         this.actions$.pipe(
             ofType(UsersGenericActions.init),
@@ -32,7 +37,7 @@ export class UsersEffects {
     public openUserCreationDialog$ = createEffect(() =>
         this.actions$.pipe(
             ofType(UserCreationActions.openCreationDialog),
-            tap((action) => this.dialogRef = this.dialog.open(UserCreationFormComponent, action.dialogConfig))
+            tap((action) => this.createUserDialogRef = this.dialog.open(UserCreationFormComponent, action.dialogConfig))
         ),
         {dispatch: false})
     
@@ -40,15 +45,22 @@ export class UsersEffects {
         this.actions$.pipe(
             ofType(FormsActions.cancelFormRequested),
             filter(action => action.id === USER_CREATION_FORM_ID),
-            tap((action) => this.dialogRef.close())
+            tap((action) => this.createUserDialogRef.close())
         ),
         {dispatch: false})
+
+    public editUserButtonClicked$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(editRowButtonClicked),
+            filter(action => action.listId === USERS_LIST_ID),
+            map((action) => this.usersService.navigate())
+        ),{dispatch: false})
 
     public saveUserRequested$ = createEffect(() => 
         this.actions$.pipe(
             ofType(FormsActions.saveFormRequested),
             filter(form => form.id === USER_CREATION_FORM_ID),
-            tap(() => this.dialogRef.close()),
+            tap(() => this.createUserDialogRef.close()),
             map(action => UserCreationActions.saveUserRequested({
                 data: action.data as CreateUser
             }))
@@ -78,6 +90,7 @@ export class UsersEffects {
 
     constructor(
         private readonly actions$: Actions,
+        private readonly usersService: UsersService,
         private usersQuery: UsersQuery,
         private addUserMutation: AddUserMutation,
         private dialog: MatDialog){}

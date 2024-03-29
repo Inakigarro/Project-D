@@ -27,12 +27,12 @@
         },
         {
             "name": "BasicButton",
-            "id": "interface-BasicButton-d0495e2407a424412a78e131f43fa8ebff38dbade75fbbea2c35d0a9ade206527776245dfec522ae21cee88b9ab24c544c57a36275065eb9ad54c90140c49759",
+            "id": "interface-BasicButton-39942e139923756029f53c92173c5cf1d791668efbc486401e45cdefb50090c7e31823ca25e70cc4862517920c2a194734dcdd49881002bc5e44bac8e74af483",
             "file": "src/components/buttons/model.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { Action } from \"@ngrx/store\";\r\n\r\nexport interface ButtonDefinition {\r\n    buttonType: 'normal'|'submit'|'warning';\r\n    type: 'basic'|'submit'|'reset';\r\n    kind: 'basic'|'raised'|'fab';\r\n}\r\n\r\nexport interface BasicButton {\r\n    buttonDefinition: ButtonDefinition;\r\n    label?:string;\r\n    icon?:string;\r\n    disabled?: boolean;\r\n}\r\n\r\nexport interface FormButton extends BasicButton {\r\n    action: Action;\r\n}\r\n",
+            "sourceCode": "import { Action } from \"@ngrx/store\";\r\n\r\nexport interface ButtonDefinition {\r\n    buttonType: 'normal'|'submit'|'warning';\r\n    type: 'basic'|'submit'|'reset';\r\n    kind: 'basic'|'raised'|'fab';\r\n}\r\n\r\nexport interface BasicButton {\r\n    buttonDefinition: ButtonDefinition;\r\n    label?:string;\r\n    icon?:string;\r\n    disabled: boolean;\r\n}\r\n\r\nexport interface FormButton extends BasicButton {\r\n    action?: Action;\r\n}\r\n",
             "properties": [
                 {
                     "name": "buttonDefinition",
@@ -48,7 +48,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "boolean",
-                    "optional": true,
+                    "optional": false,
                     "description": "",
                     "line": 13
                 },
@@ -78,12 +78,12 @@
         },
         {
             "name": "ButtonDefinition",
-            "id": "interface-ButtonDefinition-d0495e2407a424412a78e131f43fa8ebff38dbade75fbbea2c35d0a9ade206527776245dfec522ae21cee88b9ab24c544c57a36275065eb9ad54c90140c49759",
+            "id": "interface-ButtonDefinition-39942e139923756029f53c92173c5cf1d791668efbc486401e45cdefb50090c7e31823ca25e70cc4862517920c2a194734dcdd49881002bc5e44bac8e74af483",
             "file": "src/components/buttons/model.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { Action } from \"@ngrx/store\";\r\n\r\nexport interface ButtonDefinition {\r\n    buttonType: 'normal'|'submit'|'warning';\r\n    type: 'basic'|'submit'|'reset';\r\n    kind: 'basic'|'raised'|'fab';\r\n}\r\n\r\nexport interface BasicButton {\r\n    buttonDefinition: ButtonDefinition;\r\n    label?:string;\r\n    icon?:string;\r\n    disabled?: boolean;\r\n}\r\n\r\nexport interface FormButton extends BasicButton {\r\n    action: Action;\r\n}\r\n",
+            "sourceCode": "import { Action } from \"@ngrx/store\";\r\n\r\nexport interface ButtonDefinition {\r\n    buttonType: 'normal'|'submit'|'warning';\r\n    type: 'basic'|'submit'|'reset';\r\n    kind: 'basic'|'raised'|'fab';\r\n}\r\n\r\nexport interface BasicButton {\r\n    buttonDefinition: ButtonDefinition;\r\n    label?:string;\r\n    icon?:string;\r\n    disabled: boolean;\r\n}\r\n\r\nexport interface FormButton extends BasicButton {\r\n    action?: Action;\r\n}\r\n",
             "properties": [
                 {
                     "name": "buttonType",
@@ -152,20 +152,80 @@
             "extends": []
         },
         {
+            "name": "DynamicFormField",
+            "id": "interface-DynamicFormField-45677120883b532a5118ac72fa970766e1f01b6c77cc66bf693954f28f749c45ddfe6d53287786fb5f6be53fb11ae7b8fa758d062b503f4a5613e1398eec543a",
+            "file": "src/components/forms/model.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { Validators } from \"@angular/forms\";\r\n\r\nexport type FormType = 'input' | 'text-area'\r\n\r\nexport interface DynamicFormField<TItem> {\r\n    name: string & keyof TItem;\r\n    type: FormType;\r\n    defaultValue: unknown,\r\n    disabled: boolean,\r\n    validators: Validators\r\n}",
+            "properties": [
+                {
+                    "name": "defaultValue",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 8
+                },
+                {
+                    "name": "disabled",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 9
+                },
+                {
+                    "name": "name",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 6
+                },
+                {
+                    "name": "type",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "FormType",
+                    "optional": false,
+                    "description": "",
+                    "line": 7
+                },
+                {
+                    "name": "validators",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Validators",
+                    "optional": false,
+                    "description": "",
+                    "line": 10
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": []
+        },
+        {
             "name": "FormButton",
-            "id": "interface-FormButton-d0495e2407a424412a78e131f43fa8ebff38dbade75fbbea2c35d0a9ade206527776245dfec522ae21cee88b9ab24c544c57a36275065eb9ad54c90140c49759",
+            "id": "interface-FormButton-39942e139923756029f53c92173c5cf1d791668efbc486401e45cdefb50090c7e31823ca25e70cc4862517920c2a194734dcdd49881002bc5e44bac8e74af483",
             "file": "src/components/buttons/model.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { Action } from \"@ngrx/store\";\r\n\r\nexport interface ButtonDefinition {\r\n    buttonType: 'normal'|'submit'|'warning';\r\n    type: 'basic'|'submit'|'reset';\r\n    kind: 'basic'|'raised'|'fab';\r\n}\r\n\r\nexport interface BasicButton {\r\n    buttonDefinition: ButtonDefinition;\r\n    label?:string;\r\n    icon?:string;\r\n    disabled?: boolean;\r\n}\r\n\r\nexport interface FormButton extends BasicButton {\r\n    action: Action;\r\n}\r\n",
+            "sourceCode": "import { Action } from \"@ngrx/store\";\r\n\r\nexport interface ButtonDefinition {\r\n    buttonType: 'normal'|'submit'|'warning';\r\n    type: 'basic'|'submit'|'reset';\r\n    kind: 'basic'|'raised'|'fab';\r\n}\r\n\r\nexport interface BasicButton {\r\n    buttonDefinition: ButtonDefinition;\r\n    label?:string;\r\n    icon?:string;\r\n    disabled: boolean;\r\n}\r\n\r\nexport interface FormButton extends BasicButton {\r\n    action?: Action;\r\n}\r\n",
             "properties": [
                 {
                     "name": "action",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Action",
-                    "optional": false,
+                    "optional": true,
                     "description": "",
                     "line": 17
                 }
@@ -176,48 +236,6 @@
             "extends": [
                 "BasicButton"
             ]
-        },
-        {
-            "name": "FormField",
-            "id": "interface-FormField-96e0ba963f39de0eb926346bb1d5856b510a641b4457cfbca555712037c975127d39b0d35ed2e85846281ae35535d1f780259dc7133be0908d6090986830e41f",
-            "file": "src/components/forms/model.ts",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "type": "interface",
-            "sourceCode": "export type FormType = 'input' | 'select' | 'text-area'\r\n\r\nexport interface FormField {\r\n    type?: FormType;\r\n    label?: string;\r\n    disabled?: boolean;\r\n}",
-            "properties": [
-                {
-                    "name": "disabled",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "optional": true,
-                    "description": "",
-                    "line": 6
-                },
-                {
-                    "name": "label",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": true,
-                    "description": "",
-                    "line": 5
-                },
-                {
-                    "name": "type",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "FormType",
-                    "optional": true,
-                    "description": "",
-                    "line": 4
-                }
-            ],
-            "indexSignatures": [],
-            "kind": 171,
-            "methods": [],
-            "extends": []
         },
         {
             "name": "UpdateUser",
@@ -329,12 +347,12 @@
         },
         {
             "name": "UsersPartialState",
-            "id": "interface-UsersPartialState-e3e33124594bbcfed5710eab8d5c7097e3fe1197db9c836e7712598c67f4a333fac8a6a48a919e4ee65393b7fdcdd3762baec5cb11a7e18bbfbab23f80d9b6dd",
+            "id": "interface-UsersPartialState-be8ed6e9d36dfc9d3d9408c8354589976bb7fe4f584641ad0d60ce9f6f1db8513232b4259e4f629ce1a85a785ce2d7a7c1052ea69d3843784798fd3a021d5a66",
             "file": "src/users/domain/state/users.reducer.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { Action, createReducer, on } from \"@ngrx/store\";\r\nimport { User } from \"../../shared\";\r\nimport { UsersGenericActions } from \"./users.actions\";\r\n\r\nexport const USERS_FEATURE_KEY = 'users';\r\n\r\nexport interface UsersState {\r\n    usersLoaded: boolean;\r\n    usersList: User[];\r\n}\r\n\r\nexport interface UsersPartialState {\r\n    readonly [USERS_FEATURE_KEY]: UsersState;\r\n}\r\n\r\nexport const initialState: UsersState = {\r\n    usersLoaded: false,\r\n    usersList: []\r\n}\r\n\r\nconst reducer = createReducer(\r\n    initialState,\r\n    on(UsersGenericActions.usersListLoaded, (state, action) =>({\r\n        ...state,\r\n        usersLoaded: true,\r\n        usersList: action.usersList\r\n    }))\r\n);\r\n\r\nexport function usersReducer(state: UsersState, action: Action){\r\n    return reducer(state, action)\r\n}",
+            "sourceCode": "import { Action, createReducer, on } from \"@ngrx/store\";\r\nimport { User } from \"../../shared\";\r\nimport { UserCreationActions, UsersGenericActions } from \"./users.actions\";\r\n\r\nexport const USERS_FEATURE_KEY = 'users';\r\n\r\nfunction addUserOrdered(list: User[], user: User){\r\n    let updatedList = list.concat(user);\r\n\r\n    return updatedList.sort((a, b)=> {\r\n        if (a.correlationId < b.correlationId){\r\n            return 1\r\n        }\r\n        if (a.correlationId > b.correlationId){\r\n            return -1\r\n        }\r\n        return 0\r\n    });\r\n}\r\n\r\nexport interface UsersState {\r\n    usersLoaded: boolean;\r\n    usersList: User[];\r\n    currentUser?: User;\r\n}\r\n\r\nexport interface UsersPartialState {\r\n    readonly [USERS_FEATURE_KEY]: UsersState;\r\n}\r\n\r\nexport const initialState: UsersState = {\r\n    usersLoaded: false,\r\n    usersList: []\r\n}\r\n\r\nconst reducer = createReducer(\r\n    initialState,\r\n    on(UsersGenericActions.usersListLoaded, (state, action) =>({\r\n        ...state,\r\n        usersLoaded: true,\r\n        usersList: action.usersList\r\n    })),\r\n    on(UserCreationActions.userCreationSucceeded, state =>({\r\n        ...state,\r\n        usersLoaded: false,\r\n    })),\r\n    on(UsersGenericActions.usersListUpdated, (state, action) => ({\r\n        ...state,\r\n        usersLoaded: true,\r\n        usersList: state.usersList.concat(action.user)\r\n    }))\r\n);\r\n\r\nexport function usersReducer(state: UsersState, action: Action){\r\n    return reducer(state, action)\r\n}",
             "properties": [
                 {
                     "name": "USERS_FEATURE_KEY",
@@ -343,7 +361,7 @@
                     "type": "UsersState",
                     "optional": false,
                     "description": "",
-                    "line": 13,
+                    "line": 28,
                     "modifierKind": [
                         148
                     ]
@@ -356,13 +374,22 @@
         },
         {
             "name": "UsersState",
-            "id": "interface-UsersState-e3e33124594bbcfed5710eab8d5c7097e3fe1197db9c836e7712598c67f4a333fac8a6a48a919e4ee65393b7fdcdd3762baec5cb11a7e18bbfbab23f80d9b6dd",
+            "id": "interface-UsersState-be8ed6e9d36dfc9d3d9408c8354589976bb7fe4f584641ad0d60ce9f6f1db8513232b4259e4f629ce1a85a785ce2d7a7c1052ea69d3843784798fd3a021d5a66",
             "file": "src/users/domain/state/users.reducer.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { Action, createReducer, on } from \"@ngrx/store\";\r\nimport { User } from \"../../shared\";\r\nimport { UsersGenericActions } from \"./users.actions\";\r\n\r\nexport const USERS_FEATURE_KEY = 'users';\r\n\r\nexport interface UsersState {\r\n    usersLoaded: boolean;\r\n    usersList: User[];\r\n}\r\n\r\nexport interface UsersPartialState {\r\n    readonly [USERS_FEATURE_KEY]: UsersState;\r\n}\r\n\r\nexport const initialState: UsersState = {\r\n    usersLoaded: false,\r\n    usersList: []\r\n}\r\n\r\nconst reducer = createReducer(\r\n    initialState,\r\n    on(UsersGenericActions.usersListLoaded, (state, action) =>({\r\n        ...state,\r\n        usersLoaded: true,\r\n        usersList: action.usersList\r\n    }))\r\n);\r\n\r\nexport function usersReducer(state: UsersState, action: Action){\r\n    return reducer(state, action)\r\n}",
+            "sourceCode": "import { Action, createReducer, on } from \"@ngrx/store\";\r\nimport { User } from \"../../shared\";\r\nimport { UserCreationActions, UsersGenericActions } from \"./users.actions\";\r\n\r\nexport const USERS_FEATURE_KEY = 'users';\r\n\r\nfunction addUserOrdered(list: User[], user: User){\r\n    let updatedList = list.concat(user);\r\n\r\n    return updatedList.sort((a, b)=> {\r\n        if (a.correlationId < b.correlationId){\r\n            return 1\r\n        }\r\n        if (a.correlationId > b.correlationId){\r\n            return -1\r\n        }\r\n        return 0\r\n    });\r\n}\r\n\r\nexport interface UsersState {\r\n    usersLoaded: boolean;\r\n    usersList: User[];\r\n    currentUser?: User;\r\n}\r\n\r\nexport interface UsersPartialState {\r\n    readonly [USERS_FEATURE_KEY]: UsersState;\r\n}\r\n\r\nexport const initialState: UsersState = {\r\n    usersLoaded: false,\r\n    usersList: []\r\n}\r\n\r\nconst reducer = createReducer(\r\n    initialState,\r\n    on(UsersGenericActions.usersListLoaded, (state, action) =>({\r\n        ...state,\r\n        usersLoaded: true,\r\n        usersList: action.usersList\r\n    })),\r\n    on(UserCreationActions.userCreationSucceeded, state =>({\r\n        ...state,\r\n        usersLoaded: false,\r\n    })),\r\n    on(UsersGenericActions.usersListUpdated, (state, action) => ({\r\n        ...state,\r\n        usersLoaded: true,\r\n        usersList: state.usersList.concat(action.user)\r\n    }))\r\n);\r\n\r\nexport function usersReducer(state: UsersState, action: Action){\r\n    return reducer(state, action)\r\n}",
             "properties": [
+                {
+                    "name": "currentUser",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "User",
+                    "optional": true,
+                    "description": "",
+                    "line": 24
+                },
                 {
                     "name": "usersList",
                     "deprecated": false,
@@ -370,7 +397,7 @@
                     "type": "User[]",
                     "optional": false,
                     "description": "",
-                    "line": 9
+                    "line": 23
                 },
                 {
                     "name": "usersLoaded",
@@ -379,7 +406,7 @@
                     "type": "boolean",
                     "optional": false,
                     "description": "",
-                    "line": 8
+                    "line": 22
                 }
             ],
             "indexSignatures": [],
@@ -421,10 +448,280 @@
             "type": "injectable"
         },
         {
+            "name": "DynamicFormBuilder",
+            "id": "injectable-DynamicFormBuilder-5f100aa6ba4b8e17e5b87f8581c09eb052ebaf46f7abc48c45ffb43ab0774fbf7ed366c2373654d9a594950952629c1aed9fea6ffa0f6f294cfbc59b4a1d0ac4",
+            "file": "src/components/forms/form-builder/form-builder.ts",
+            "properties": [
+                {
+                    "name": "formButtons",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "FormButton[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 10,
+                    "modifierKind": [
+                        125
+                    ]
+                },
+                {
+                    "name": "formFields",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "DynamicFormField<TItem>[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 9,
+                    "modifierKind": [
+                        125
+                    ]
+                },
+                {
+                    "name": "formGroup",
+                    "defaultValue": "this.formBuilder.group({})",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 8,
+                    "modifierKind": [
+                        125
+                    ]
+                }
+            ],
+            "methods": [
+                {
+                    "name": "addFormButton",
+                    "args": [
+                        {
+                            "name": "button",
+                            "type": "FormButton",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "this",
+                    "typeParameters": [],
+                    "line": 29,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nAdd a form button to the builder.\n",
+                    "description": "<p>Add a form button to the builder.</p>\n",
+                    "modifierKind": [
+                        125
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 840,
+                                "end": 846,
+                                "flags": 16842752,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 80,
+                                "escapedText": "button"
+                            },
+                            "type": "FormButton",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "pos": 834,
+                                "end": 839,
+                                "flags": 16842752,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 80,
+                                "escapedText": "param"
+                            },
+                            "comment": "<p>The form button to add to the form.</p>\n"
+                        },
+                        {
+                            "tagName": {
+                                "pos": 892,
+                                "end": 899,
+                                "flags": 16842752,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 80,
+                                "escapedText": "returns"
+                            },
+                            "comment": "<p>The builder for chaining/</p>\n"
+                        }
+                    ]
+                },
+                {
+                    "name": "addFormField",
+                    "args": [
+                        {
+                            "name": "field",
+                            "type": "DynamicFormField<TItem>",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "this",
+                    "typeParameters": [],
+                    "line": 19,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nAdd a form field to the builder.\n",
+                    "description": "<p>Add a form field to the builder.</p>\n",
+                    "modifierKind": [
+                        125
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 545,
+                                "end": 550,
+                                "flags": 16842752,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 80,
+                                "escapedText": "field"
+                            },
+                            "type": "DynamicFormField<TItem>",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "pos": 539,
+                                "end": 544,
+                                "flags": 16842752,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 80,
+                                "escapedText": "param"
+                            },
+                            "comment": "<p>The dynamic form field to add to the form.</p>\n"
+                        },
+                        {
+                            "tagName": {
+                                "pos": 603,
+                                "end": 610,
+                                "flags": 16842752,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 80,
+                                "escapedText": "returns"
+                            },
+                            "comment": "<p>The builder for chaining.</p>\n"
+                        }
+                    ]
+                },
+                {
+                    "name": "buildForm",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 39,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nFor each form field added, creates a form control and add it\nto the form group.\n",
+                    "description": "<p>For each form field added, creates a form control and add it\nto the form group.</p>\n",
+                    "modifierKind": [
+                        125
+                    ],
+                    "jsdoctags": [
+                        {
+                            "tagName": {
+                                "pos": 1167,
+                                "end": 1174,
+                                "flags": 16842752,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 80,
+                                "escapedText": "returns"
+                            },
+                            "comment": "<p>The builded form group.</p>\n"
+                        }
+                    ]
+                },
+                {
+                    "name": "destroyForm",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 53,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nResets the form group value and remove all form controls.\n",
+                    "description": "<p>Resets the form group value and remove all form controls.</p>\n",
+                    "modifierKind": [
+                        125
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from \"@angular/core\";\r\nimport { FormBuilder } from \"@angular/forms\";\r\nimport { DynamicFormField } from '../model';\r\nimport { FormButton } from \"../../buttons\";\r\n\r\n@Injectable({providedIn: 'root'})\r\nexport class DynamicFormBuilder<TItem extends {}> {\r\n    public formGroup = this.formBuilder.group({});\r\n    public formFields: DynamicFormField<TItem>[] = []\r\n    public formButtons: FormButton[] = [];\r\n\r\n    constructor(private formBuilder: FormBuilder){}\r\n\r\n    /**\r\n     * Add a form field to the builder.\r\n     * @param field The dynamic form field to add to the form.\r\n     * @returns The builder for chaining.\r\n     */\r\n    public addFormField(field: DynamicFormField<TItem>) {\r\n        this.formFields.push(field);\r\n        return this;\r\n    }\r\n\r\n    /**\r\n     * Add a form button to the builder.\r\n     * @param button The form button to add to the form.\r\n     * @returns The builder for chaining/\r\n     */\r\n    public addFormButton(button: FormButton){\r\n        this.formButtons.push(button);\r\n        return this;\r\n    }\r\n\r\n    /**\r\n     * For each form field added, creates a form control and add it\r\n     * to the form group.\r\n     * @returns The builded form group.\r\n     */\r\n    public buildForm() {\r\n        this.formFields.forEach(field => {\r\n            let control = this.formBuilder.control({\r\n                disabled: field.disabled,\r\n                value: field.defaultValue\r\n            },field.validators)\r\n            this.formGroup.addControl(field.name, control);\r\n        });\r\n        return this.formGroup;\r\n    }\r\n\r\n    /**\r\n     * Resets the form group value and remove all form controls.\r\n     */\r\n    public destroyForm() {\r\n        this.formFields.forEach(field =>{\r\n            this.formGroup.removeControl(field.name);\r\n        });\r\n\r\n        this.formFields = [];\r\n        this.formButtons = [];\r\n        return this.formGroup;\r\n    }\r\n}\r\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "formBuilder",
+                        "type": "FormBuilder",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 10,
+                "jsdoctags": [
+                    {
+                        "name": "formBuilder",
+                        "type": "FormBuilder",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "type": "injectable"
+        },
+        {
             "name": "UsersEffects",
-            "id": "injectable-UsersEffects-bcd3ce395cb24d2f52065ef76ea56bf6f3bc216f90fe3b40a9c15f2af8a615e94e5fadf4206ecf6d7062a54b1fc9b6c955fb03f37f7b93f90164f7b634bea373",
+            "id": "injectable-UsersEffects-85f561e5c129fc3151d3cdc053936938f1d6e956bd35c320a7f98e0219ddb83980d9d967bc27a19663745c5bd572b599119c8fbf06b8d42dc80654280185ed51",
             "file": "src/users/domain/state/users.effects.ts",
             "properties": [
+                {
+                    "name": "closeUserCreationDialog$",
+                    "defaultValue": "createEffect(() =>\r\n        this.actions$.pipe(\r\n            ofType(FormsActions.cancelFormRequested),\r\n            filter(action => action.id === USER_CREATION_FORM_ID),\r\n            tap((action) => this.dialogRef.close())\r\n        ),\r\n        {dispatch: false})",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 39,
+                    "modifierKind": [
+                        125
+                    ]
+                },
+                {
+                    "name": "dialogRef",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "MatDialogRef<UserCreationFormComponent | CreateUser>",
+                    "optional": false,
+                    "description": "",
+                    "line": 15,
+                    "modifierKind": [
+                        123
+                    ]
+                },
                 {
                     "name": "initUsers$",
                     "defaultValue": "createEffect(() =>\r\n        this.actions$.pipe(\r\n            ofType(UsersGenericActions.init),\r\n            fetch({\r\n                run: () => this.usersQuery\r\n                                .watch()\r\n                                .valueChanges.pipe(\r\n                                    map(result => UsersGenericActions.usersListLoaded({\r\n                                        usersList: result.data.users\r\n                                    }))\r\n                                ),\r\n                onError: (_, error) => console.log(error)\r\n            })\r\n        ))",
@@ -433,20 +730,59 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 12,
+                    "line": 17,
+                    "modifierKind": [
+                        125
+                    ]
+                },
+                {
+                    "name": "openUserCreationDialog$",
+                    "defaultValue": "createEffect(() =>\r\n        this.actions$.pipe(\r\n            ofType(UserCreationActions.openCreationDialog),\r\n            tap((action) => this.dialogRef = this.dialog.open(UserCreationFormComponent, action.dialogConfig))\r\n        ),\r\n        {dispatch: false})",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 32,
                     "modifierKind": [
                         125
                     ]
                 },
                 {
                     "name": "saveUser$",
-                    "defaultValue": "createEffect(() =>\r\n        this.actions$.pipe(\r\n            ofType(UserCreationAction.saveButtonClicked),\r\n            pessimisticUpdate({\r\n                run: (action) =>\r\n                    this.addUserMutation.mutate({input: action.createUser}).pipe(\r\n                        map(({data}) => UserCreationAction.userCreationSucceeded({\r\n                            user: data?.addUser as User\r\n                        }))\r\n                    ),\r\n                onError: (action, error) => {\r\n                    console.log(error)\r\n                }\r\n            })\r\n        ))",
+                    "defaultValue": "createEffect(() =>\r\n        this.actions$.pipe(\r\n            ofType(UserCreationActions.saveUserRequested),\r\n            pessimisticUpdate({\r\n                run: (action) =>\r\n                    this.addUserMutation.mutate({input: action.data}).pipe(\r\n                        map(({data}) => UserCreationActions.userCreationSucceeded({\r\n                            user: data?.addUser as User\r\n                        }))\r\n                    ),\r\n                onError: (action, error) => console.log(error)\r\n            })\r\n        ))",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 27,
+                    "line": 57,
+                    "modifierKind": [
+                        125
+                    ]
+                },
+                {
+                    "name": "saveUserRequested$",
+                    "defaultValue": "createEffect(() => \r\n        this.actions$.pipe(\r\n            ofType(FormsActions.saveFormRequested),\r\n            filter(form => form.id === USER_CREATION_FORM_ID),\r\n            tap(() => this.dialogRef.close()),\r\n            map(action => UserCreationActions.saveUserRequested({\r\n                data: action.data as CreateUser\r\n            }))\r\n        ))",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 47,
+                    "modifierKind": [
+                        125
+                    ]
+                },
+                {
+                    "name": "updateUserList$",
+                    "defaultValue": "createEffect(() =>\r\n        this.actions$.pipe(\r\n            ofType(UserCreationActions.userCreationSucceeded),\r\n            map((action) => UsersGenericActions.usersListUpdated({\r\n                user: action.user\r\n            }))\r\n        ))",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 71,
                     "modifierKind": [
                         125
                     ]
@@ -457,7 +793,7 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Injectable } from \"@angular/core\";\r\nimport { Actions, createEffect, ofType } from \"@ngrx/effects\";\r\nimport { UsersQuery } from \"../graphql/queries/users-query\";\r\nimport { UserCreationAction, UsersGenericActions } from \"./users.actions\";\r\nimport { map } from \"rxjs\";\r\nimport { fetch, pessimisticUpdate } from '@nx/angular'\r\nimport { AddUserMutation } from \"../graphql/mutations/add-user-mutation\";\r\nimport { User } from \"../../shared\";\r\n\r\n@Injectable()\r\nexport class UsersEffects {\r\n    public initUsers$ = createEffect(() =>\r\n        this.actions$.pipe(\r\n            ofType(UsersGenericActions.init),\r\n            fetch({\r\n                run: () => this.usersQuery\r\n                                .watch()\r\n                                .valueChanges.pipe(\r\n                                    map(result => UsersGenericActions.usersListLoaded({\r\n                                        usersList: result.data.users\r\n                                    }))\r\n                                ),\r\n                onError: (_, error) => console.log(error)\r\n            })\r\n        ));\r\n\r\n    public saveUser$ = createEffect(() =>\r\n        this.actions$.pipe(\r\n            ofType(UserCreationAction.saveButtonClicked),\r\n            pessimisticUpdate({\r\n                run: (action) =>\r\n                    this.addUserMutation.mutate({input: action.createUser}).pipe(\r\n                        map(({data}) => UserCreationAction.userCreationSucceeded({\r\n                            user: data?.addUser as User\r\n                        }))\r\n                    ),\r\n                onError: (action, error) => {\r\n                    console.log(error)\r\n                }\r\n            })\r\n        ))\r\n    constructor(\r\n        private readonly actions$: Actions,\r\n        private usersQuery: UsersQuery,\r\n        private addUserMutation: AddUserMutation){}\r\n}",
+            "sourceCode": "import { Injectable } from \"@angular/core\";\r\nimport { Actions, createEffect, ofType } from \"@ngrx/effects\";\r\nimport { UsersQuery } from \"../graphql/queries/users-query\";\r\nimport { UserCreationActions, UsersGenericActions } from \"./users.actions\";\r\nimport { filter, map, tap } from \"rxjs\";\r\nimport { fetch, pessimisticUpdate } from '@nx/angular'\r\nimport { AddUserMutation } from \"../graphql/mutations/add-user-mutation\";\r\nimport { CreateUser, User } from \"../../shared\";\r\nimport { FormsActions } from \"../../../components/forms/form/state/form.actions\";\r\nimport { USER_CREATION_FORM_ID, UserCreationFormComponent } from \"../../feature/user-creation-form/user-creation-form.component\";\r\nimport { MatDialog, MatDialogRef } from \"@angular/material/dialog\";\r\n\r\n@Injectable()\r\nexport class UsersEffects {\r\n    private dialogRef : MatDialogRef<UserCreationFormComponent, CreateUser>;\r\n    \r\n    public initUsers$ = createEffect(() =>\r\n        this.actions$.pipe(\r\n            ofType(UsersGenericActions.init),\r\n            fetch({\r\n                run: () => this.usersQuery\r\n                                .watch()\r\n                                .valueChanges.pipe(\r\n                                    map(result => UsersGenericActions.usersListLoaded({\r\n                                        usersList: result.data.users\r\n                                    }))\r\n                                ),\r\n                onError: (_, error) => console.log(error)\r\n            })\r\n        ));\r\n\r\n    public openUserCreationDialog$ = createEffect(() =>\r\n        this.actions$.pipe(\r\n            ofType(UserCreationActions.openCreationDialog),\r\n            tap((action) => this.dialogRef = this.dialog.open(UserCreationFormComponent, action.dialogConfig))\r\n        ),\r\n        {dispatch: false})\r\n    \r\n    public closeUserCreationDialog$ = createEffect(() =>\r\n        this.actions$.pipe(\r\n            ofType(FormsActions.cancelFormRequested),\r\n            filter(action => action.id === USER_CREATION_FORM_ID),\r\n            tap((action) => this.dialogRef.close())\r\n        ),\r\n        {dispatch: false})\r\n\r\n    public saveUserRequested$ = createEffect(() => \r\n        this.actions$.pipe(\r\n            ofType(FormsActions.saveFormRequested),\r\n            filter(form => form.id === USER_CREATION_FORM_ID),\r\n            tap(() => this.dialogRef.close()),\r\n            map(action => UserCreationActions.saveUserRequested({\r\n                data: action.data as CreateUser\r\n            }))\r\n        ));\r\n\r\n    public saveUser$ = createEffect(() =>\r\n        this.actions$.pipe(\r\n            ofType(UserCreationActions.saveUserRequested),\r\n            pessimisticUpdate({\r\n                run: (action) =>\r\n                    this.addUserMutation.mutate({input: action.data}).pipe(\r\n                        map(({data}) => UserCreationActions.userCreationSucceeded({\r\n                            user: data?.addUser as User\r\n                        }))\r\n                    ),\r\n                onError: (action, error) => console.log(error)\r\n            })\r\n        ));\r\n    \r\n    public updateUserList$ = createEffect(() =>\r\n        this.actions$.pipe(\r\n            ofType(UserCreationActions.userCreationSucceeded),\r\n            map((action) => UsersGenericActions.usersListUpdated({\r\n                user: action.user\r\n            }))\r\n        ));\r\n\r\n    constructor(\r\n        private readonly actions$: Actions,\r\n        private usersQuery: UsersQuery,\r\n        private addUserMutation: AddUserMutation,\r\n        private dialog: MatDialog){}\r\n}",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -481,9 +817,15 @@
                         "type": "AddUserMutation",
                         "deprecated": false,
                         "deprecationMessage": ""
+                    },
+                    {
+                        "name": "dialog",
+                        "type": "MatDialog",
+                        "deprecated": false,
+                        "deprecationMessage": ""
                     }
                 ],
-                "line": 41,
+                "line": 77,
                 "jsdoctags": [
                     {
                         "name": "actions$",
@@ -506,6 +848,15 @@
                     {
                         "name": "addUserMutation",
                         "type": "AddUserMutation",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "dialog",
+                        "type": "MatDialog",
                         "deprecated": false,
                         "deprecationMessage": "",
                         "tagName": {
@@ -704,7 +1055,7 @@
         },
         {
             "name": "ButtonComponent",
-            "id": "component-ButtonComponent-a68b36494cb7d35c6f4fb3debd0c223ddcac99e858b5d0d81596bd2ff84bd173e9585c7b52ce56d59e7a98276f48c1ae7cad3d7251829c5436c1ff8a8d9a826a",
+            "id": "component-ButtonComponent-f99d5216aa875363381d1edc9ab553b965222d30e980e9837caf48ffb40bbfebec6298e45c73bcf24ed75d36d99b92158fe095ff2285239812b4dd0cb285972b",
             "file": "src/components/buttons/button/button.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -783,17 +1134,17 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, Output } from \"@angular/core\";\r\nimport { BasicButton, ButtonDefinition } from \"../model\";\r\nimport { Action } from \"@ngrx/store\";\r\n\r\n@Component({\r\n    selector: 'ig-button',\r\n    templateUrl: './button.component.html',\r\n    styleUrl: './button.component.scss'\r\n})\r\nexport class ButtonComponent {\r\n    @Input() \r\n    public buttonDefinition: ButtonDefinition;\r\n\r\n    @Input()\r\n    public label?: string;\r\n\r\n    @Input()\r\n    public icon?: string;\r\n    \r\n    @Input()\r\n    public disabled : boolean = false;\r\n\r\n    @Input()\r\n    public action: Action;\r\n\r\n    @Output()\r\n    public executed = new EventEmitter<Action>();\r\n}",
+            "sourceCode": "import { Component, EventEmitter, Input, Output } from \"@angular/core\";\r\nimport { BasicButton, ButtonDefinition } from \"../model\";\r\nimport { Action } from \"@ngrx/store\";\r\n\r\n@Component({\r\n    selector: 'ig-button',\r\n    templateUrl: './button.component.html',\r\n    styleUrl: './button.component.scss'\r\n})\r\nexport class ButtonComponent {\r\n    @Input() \r\n    public buttonDefinition: ButtonDefinition;\r\n\r\n    @Input()\r\n    public label?: string;\r\n\r\n    @Input()\r\n    public icon?: string;\r\n    \r\n    @Input()\r\n    public disabled : boolean = false;\r\n\r\n    @Input()\r\n    public action?: Action;\r\n\r\n    @Output()\r\n    public executed = new EventEmitter<Action>();\r\n}",
             "styleUrl": "./button.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "@switch (buttonDefinition.kind) {\r\n@case ('raised') {\r\n<button mat-raised-button [disabled]=\"disabled\" (click)=\"executed.emit(label)\">\r\n    @if (icon) {\r\n    <mat-icon>{{icon}}</mat-icon>\r\n    }\r\n    @if (label) {\r\n    <span>{{label}}</span>\r\n    }\r\n</button>\r\n}\r\n@case ('fab') {\r\n<button mat-fab [disabled]=\"disabled\" (click)=\"executed.emit(label)\">\r\n    @if (icon) {\r\n    <mat-icon>{{icon}}</mat-icon>\r\n    }\r\n    @if (label) {\r\n    <span>{{label}}</span>\r\n    }\r\n</button>\r\n}\r\n@default {\r\n<button mat-button [disabled]=\"disabled\" (click)=\"executed.emit(label)\">\r\n    @if (icon) {\r\n    <mat-icon>{{icon}}</mat-icon>\r\n    }\r\n    @if (label) {\r\n    <span>{{label}}</span>\r\n    }\r\n</button>\r\n}\r\n}"
+            "templateData": "@switch (buttonDefinition.kind) {\r\n@case ('raised') {\r\n<button mat-raised-button [disabled]=\"disabled\" (click)=\"executed.emit(action)\">\r\n    @if (icon) {\r\n    <mat-icon>{{icon}}</mat-icon>\r\n    }\r\n    @if (label) {\r\n    <span>{{label}}</span>\r\n    }\r\n</button>\r\n}\r\n@case ('fab') {\r\n<button mat-fab [disabled]=\"disabled\" (click)=\"executed.emit(action)\">\r\n    @if (icon) {\r\n    <mat-icon>{{icon}}</mat-icon>\r\n    }\r\n    @if (label) {\r\n    <span>{{label}}</span>\r\n    }\r\n</button>\r\n}\r\n@default {\r\n<button mat-button [disabled]=\"disabled\" (click)=\"executed.emit(action)\">\r\n    @if (icon) {\r\n    <mat-icon>{{icon}}</mat-icon>\r\n    }\r\n    @if (label) {\r\n    <span>{{label}}</span>\r\n    }\r\n</button>\r\n}\r\n}"
         },
         {
             "name": "FormComponent",
-            "id": "component-FormComponent-32da2e7fc1137688bf83f44900742018c8e3b69957585784be4e7b6c868508b88eb17f3068c2c97cd6962d9d51af62267cd958d828daa7b6e7516e856c691180",
+            "id": "component-FormComponent-e3bbcd52dd7a221234dd71d28dfdc2d041a5872b8bcbbf631072ab01c4fbd29b492fd887ce639112c7d0d5d4fde2efafefa031d5dd57a75d50ada4ca40402433",
             "file": "src/components/forms/form/form.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -810,28 +1161,44 @@
             "hostDirectives": [],
             "inputsClass": [
                 {
-                    "name": "fields",
-                    "defaultValue": "[]",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 16,
-                    "type": "FormField[]",
-                    "decorators": []
-                },
-                {
                     "name": "formButtons",
                     "defaultValue": "[]",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 19,
+                    "line": 27,
                     "type": "FormButton[]",
+                    "decorators": []
+                },
+                {
+                    "name": "formFields",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 21,
+                    "type": "DynamicFormField<TItem>[]",
+                    "decorators": []
+                },
+                {
+                    "name": "formGroup",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 24,
+                    "type": "FormGroup",
+                    "decorators": []
+                },
+                {
+                    "name": "formId",
+                    "defaultValue": "'formulario'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 15,
+                    "type": "string",
                     "decorators": []
                 },
                 {
                     "name": "formTitle",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 13,
+                    "line": 18,
                     "type": "string",
                     "decorators": []
                 }
@@ -839,6 +1206,60 @@
             "outputsClass": [],
             "propertiesClass": [],
             "methodsClass": [
+                {
+                    "name": "humanizeLabel",
+                    "args": [
+                        {
+                            "name": "label",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 38,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        125
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "label",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ngOnDestroy",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 31,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onCancelButtonClicked",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 57,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        125
+                    ]
+                },
                 {
                     "name": "onClick",
                     "args": [
@@ -852,7 +1273,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 23,
+                    "line": 43,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -869,6 +1290,32 @@
                             }
                         }
                     ]
+                },
+                {
+                    "name": "onResetButtonClicked",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 53,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        125
+                    ]
+                },
+                {
+                    "name": "onSaveButtonClicked",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 47,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        125
+                    ]
                 }
             ],
             "deprecated": false,
@@ -880,7 +1327,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input } from \"@angular/core\";\r\nimport { FormField } from \"../model\";\r\nimport { Action, Store } from \"@ngrx/store\";\r\nimport { FormButton } from \"../../buttons\";\r\n\r\n@Component({\r\n    selector: 'ig-form',\r\n    templateUrl: './form.component.html',\r\n    styleUrl: './form.component.scss'\r\n})\r\nexport class FormComponent {\r\n    @Input()\r\n    public formTitle?: string;\r\n    \r\n    @Input()\r\n    public fields: FormField[] = [];\r\n\r\n    @Input()\r\n    public formButtons : FormButton[] = [];\r\n\r\n    constructor(private readonly store: Store){}\r\n\r\n    public onClick(action: Action) {\r\n        this.store.dispatch(action)\r\n    }\r\n}",
+            "sourceCode": "import { Component, Input, OnDestroy } from \"@angular/core\";\r\nimport { Action, Store } from \"@ngrx/store\";\r\nimport { FormButton } from \"../../buttons\";\r\nimport { DynamicFormField } from \"../model\";\r\nimport { FormGroup } from \"@angular/forms\";\r\nimport { FormsActions } from \"./state/form.actions\";\r\n\r\n@Component({\r\n    selector: 'ig-form',\r\n    templateUrl: './form.component.html',\r\n    styleUrl: './form.component.scss'\r\n})\r\nexport class FormComponent<TItem> implements OnDestroy {\r\n    @Input()\r\n    public formId: string = 'formulario';\r\n\r\n    @Input()\r\n    public formTitle?: string;\r\n\r\n    @Input()\r\n    public formFields?: DynamicFormField<TItem>[];\r\n\r\n    @Input()\r\n    public formGroup: FormGroup;\r\n\r\n    @Input()\r\n    public formButtons : FormButton[] = [];\r\n\r\n    constructor(private readonly store: Store) {}\r\n\r\n    ngOnDestroy(): void {\r\n        this.formTitle = '';\r\n        this.formGroup = new FormGroup({});\r\n        this.formFields = [];\r\n        this.formButtons = [];\r\n    }\r\n\r\n    public humanizeLabel(label: string) {\r\n        let result = label.replace(/([a-z])([A-Z])/g, '$1 $2')\r\n        return result.charAt(0).toUpperCase() + result.slice(1);\r\n    }\r\n\r\n    public onClick(action: Action) {\r\n        this.store.dispatch(action)\r\n    }\r\n\r\n    public onSaveButtonClicked() {\r\n        let data = this.formGroup.value as TItem\r\n        this.store.dispatch(FormsActions.saveFormRequested({id:this.formId, data:data}))\r\n        this.formGroup.reset();\r\n    }\r\n    \r\n    public onResetButtonClicked() {\r\n        this.formGroup.reset();\r\n    }\r\n\r\n    public onCancelButtonClicked() {\r\n        this.formGroup.reset();\r\n        this.store.dispatch(FormsActions.cancelFormRequested({id: this.formId}));\r\n    }\r\n}",
             "styleUrl": "./form.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -898,7 +1345,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 19,
+                "line": 27,
                 "jsdoctags": [
                     {
                         "name": "store",
@@ -912,7 +1359,10 @@
                 ]
             },
             "extends": [],
-            "templateData": "<mat-card>\r\n    <mat-card-header>{{formTitle}}</mat-card-header>\r\n    <mat-card-content>\r\n        <form>\r\n            @for (field of fields; track $index) {\r\n            <ig-form-field [formType]=\"field.type\" [label]=\"field.label\" [disabled]=\"field.disabled\"></ig-form-field>\r\n            }\r\n        </form>\r\n    </mat-card-content>\r\n    <mat-card-footer>\r\n        @for (button of formButtons; track $index) {\r\n        @switch (button.buttonDefinition.type) {\r\n        @case ('submit') {\r\n        <ig-button [buttonDefinition]=\"button.buttonDefinition\" [label]=\"button.label\" [icon]=\"button.icon\"\r\n            [disabled]=\"false\" (executed)=\"onClick($event)\"></ig-button>\r\n        }\r\n        @case ('reset') {\r\n        <ig-button [buttonDefinition]=\"button.buttonDefinition\" [label]=\"button.label\" [icon]=\"button.icon\"\r\n            [disabled]=\"false\" (executed)=\"onClick($event)\"></ig-button>\r\n        }\r\n        @default {\r\n        <ig-button [buttonDefinition]=\"button.buttonDefinition\" [label]=\"button.label\" [icon]=\"button.icon\"\r\n            [disabled]=\"false\" (executed)=\"onClick($event)\"></ig-button>\r\n        }\r\n        }\r\n        }\r\n    </mat-card-footer>\r\n</mat-card>"
+            "implements": [
+                "OnDestroy"
+            ],
+            "templateData": "<mat-card>\r\n    <mat-card-header>\r\n        <h1>{{formTitle}}</h1>\r\n    </mat-card-header>\r\n    <mat-card-content>\r\n        <form class=\"form\" [formGroup]=\"formGroup\">\r\n            @for (field of formFields; track $index) {\r\n            @if (field.type == 'input') {\r\n            <mat-form-field class=\"formField\">\r\n                <mat-label>{{humanizeLabel(field.name)}}</mat-label>\r\n                <input matInput formControlName=\"{{field.name}}\" />\r\n            </mat-form-field>\r\n            } @else {\r\n            <mat-form-field class=\"formField\">\r\n                <mat-label>{{humanizeLabel(field.name)}}</mat-label>\r\n                <textarea matInput formControlName=\"{{field.name}}\"></textarea>\r\n            </mat-form-field>\r\n            }\r\n            }\r\n        </form>\r\n    </mat-card-content>\r\n    <mat-card-footer class=\"form-footer\">\r\n        <button mat-raised-button [disabled]=\"false\" (click)=\"onSaveButtonClicked()\">Save</button>\r\n        <button mat-button [disabled]=\"false\" (click)=\"onResetButtonClicked()\">Reset</button>\r\n        <button mat-button [disabled]=\"false\" (click)=\"onCancelButtonClicked()\">Cancel</button>\r\n        @for (button of formButtons; track $index) {\r\n        <ig-button [buttonDefinition]=\"button.buttonDefinition\" [label]=\"button.label\" [icon]=\"button.icon\"\r\n            [disabled]=\"button.disabled\" [action]=\"button.action\" (executed)=\"onClick($event)\"></ig-button>\r\n        }\r\n    </mat-card-footer>\r\n</mat-card>"
         },
         {
             "name": "FormFieldComponent",
@@ -977,6 +1427,148 @@
             "stylesData": "",
             "extends": [],
             "templateData": "@switch (formType) {\r\n@case ('text-area') {\r\n<mat-form-field>\r\n    <mat-label>{{label}}</mat-label>\r\n    <textarea matInput [disabled]=\"disabled\"></textarea>\r\n</mat-form-field>\r\n}\r\n@default {\r\n<mat-form-field>\r\n    <mat-label>{{label}}</mat-label>\r\n    <input matInput [disabled]=\"disabled\">\r\n</mat-form-field>\r\n}\r\n}"
+        },
+        {
+            "name": "ListComponent",
+            "id": "component-ListComponent-4ad07e7ce7702f2a82783c6120107be3caf00b41ac5bc9bf27aeb164a59277f873603c0a585a59b53a6160f4a37c548a7cc678e4f34046b24827c89b82864f73",
+            "file": "src/components/lists/list/list.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "ig-list",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./list.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "listButtons",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 25,
+                    "type": "FormButton[]",
+                    "decorators": []
+                },
+                {
+                    "name": "listData",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 22,
+                    "type": "Observable<TItem[]>",
+                    "decorators": []
+                },
+                {
+                    "name": "listHeaders",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 19,
+                    "type": "( | \"buttons\")[]",
+                    "decorators": []
+                },
+                {
+                    "name": "listId",
+                    "defaultValue": "'list'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 13,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "listTitle",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 16,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "dataSource",
+                    "defaultValue": "new MatTableDataSource<TItem>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 27,
+                    "modifierKind": [
+                        125
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "humanizeLabel",
+                    "args": [
+                        {
+                            "name": "label",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 36,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        125
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "label",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 29,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        125
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, OnInit } from \"@angular/core\";\r\nimport { MatTableDataSource } from \"@angular/material/table\";\r\nimport { FormButton } from \"../../buttons\";\r\nimport { Observable, filter, map } from \"rxjs\";\r\n\r\n@Component({\r\n    selector: 'ig-list',\r\n    templateUrl: './list.component.html',\r\n    styleUrl: './list.component.scss'\r\n})\r\nexport class ListComponent<TItem> implements OnInit {\r\n    @Input()\r\n    public listId = 'list';\r\n\r\n    @Input()\r\n    public listTitle?: string;\r\n\r\n    @Input()\r\n    public listHeaders: (string & keyof TItem | 'buttons')[];\r\n\r\n    @Input()\r\n    public listData: Observable<TItem[]>;\r\n\r\n    @Input()\r\n    public listButtons: FormButton[];\r\n\r\n    public dataSource = new MatTableDataSource<TItem>();\r\n\r\n    public ngOnInit() {\r\n        this.listData.pipe(\r\n            filter(x => !!x),\r\n            map(data => this.dataSource.data = data)\r\n        ).subscribe();\r\n    }\r\n\r\n    public humanizeLabel(label: string) {\r\n        let result = label.replace(/([a-z])([A-Z])/g, '$1 $2')\r\n        return result.charAt(0).toUpperCase() + result.slice(1);\r\n    }\r\n}",
+            "styleUrl": "./list.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<mat-card>\r\n    <mat-card-header>\r\n        <mat-card-title class=\"list-title\">{{listTitle}}</mat-card-title>\r\n    </mat-card-header>\r\n    <mat-card-content>\r\n        <table mat-table [dataSource]=\"dataSource\" class=\"mat-elevarion-z8\">\r\n            @for (header of listHeaders; track $index) {\r\n            @if (header !== 'buttons') {\r\n            <ng-container matColumnDef=\"{{header}}\">\r\n                <th mat-header-cell *matHeaderCellDef>{{humanizeLabel(header)}}</th>\r\n                <td mat-cell *matCellDef=\"let element\">{{element[header]}}</td>\r\n            </ng-container>\r\n            } @else {\r\n            <ng-container matColumnDef=\"buttons\">\r\n                <th mat-header-cell *matHeaderCellDef></th>\r\n                <td mat-cell *matCellDef=\"let element\" fxLayout=\"row\" fxLayoutAlign=\"space-evenly center\">\r\n                    @for (listButton of listButtons; track $index) {\r\n                    <ig-button [buttonDefinition]=\"listButton.buttonDefinition\" [label]=\"listButton.label\"\r\n                        [icon]=\"listButton.icon\" [disabled]=\"listButton.disabled\"\r\n                        [action]=\"listButton.action\"></ig-button>\r\n                    }\r\n                </td>\r\n            </ng-container>\r\n            }\r\n            }\r\n            <tr mat-header-row *matHeaderRowDef=\"listHeaders\"></tr>\r\n            <tr mat-row *matRowDef=\"let row; columns: listHeaders\"></tr>\r\n        </table>\r\n    </mat-card-content>\r\n</mat-card>"
         },
         {
             "name": "NavbarComponent",
@@ -1066,9 +1658,8 @@
         },
         {
             "name": "UserCreationFormComponent",
-            "id": "component-UserCreationFormComponent-c52d197a7a7be4fb3f650a3d9697fe232dd0872e24f400cb77dff22919549d04e32c6d178582132f009682971ff543bb979882d8193255d31c017840a31ce8a4",
+            "id": "component-UserCreationFormComponent-5130f23b63a129870f79cbb95b90733e3cdf179c109e290ebde3b0fe4759bfc8c41174fff5e09e836f5e7a3cf4ab043828525c5a2747a3b417c81c1e9005cb7c",
             "file": "src/users/feature/user-creation-form/user-creation-form.component.ts",
-            "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -1089,17 +1680,55 @@
                     "name": "dialogRef",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "MatDialogRef<UserCreationFormComponent>",
+                    "type": "MatDialogRef<UserCreationFormComponent | CreateUser>",
                     "optional": false,
                     "description": "",
-                    "line": 24,
+                    "line": 22,
                     "modifierKind": [
                         125
                     ]
                 },
                 {
-                    "name": "displayNameControl",
-                    "defaultValue": "new FormControl('', {validators: [Validators.required]})",
+                    "name": "form",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "FormGroup",
+                    "optional": false,
+                    "description": "",
+                    "line": 16,
+                    "modifierKind": [
+                        125
+                    ]
+                },
+                {
+                    "name": "formButtons",
+                    "defaultValue": "this.dynamicFormBuilder.formButtons",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 17,
+                    "modifierKind": [
+                        125
+                    ]
+                },
+                {
+                    "name": "formFields",
+                    "defaultValue": "this.dynamicFormBuilder.formFields",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 18,
+                    "modifierKind": [
+                        125
+                    ]
+                },
+                {
+                    "name": "formId",
+                    "defaultValue": "USER_CREATION_FORM_ID",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -1109,68 +1738,29 @@
                     "modifierKind": [
                         125
                     ]
-                },
-                {
-                    "name": "emailControl",
-                    "defaultValue": "new FormControl('', {\r\n        validators: [\r\n            Validators.required,\r\n            Validators.email]})",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 16,
-                    "modifierKind": [
-                        125
-                    ]
-                },
-                {
-                    "name": "form",
-                    "defaultValue": "this.formBuilder.group({\r\n        displayName: this.displayNameControl,\r\n        email: this.emailControl\r\n    })",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 26,
-                    "modifierKind": [
-                        125
-                    ]
                 }
             ],
             "methodsClass": [
                 {
-                    "name": "getDisplayNameErrorMessage",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "\"\" | \"You must enter a value\"",
-                    "typeParameters": [],
-                    "line": 31,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "modifierKind": [
-                        125
-                    ]
-                },
-                {
-                    "name": "getEmailErrorMessage",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "\"\" | \"You must enter a value\" | \"Not a valid email\"",
-                    "typeParameters": [],
-                    "line": 34,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "modifierKind": [
-                        125
-                    ]
-                },
-                {
-                    "name": "saveUser",
+                    "name": "ngOnDestroy",
                     "args": [],
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 42,
+                    "line": 43,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        125
+                    ]
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 24,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -1187,7 +1777,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component } from \"@angular/core\";\r\nimport { UsersService } from \"../../domain/services/users.service\";\r\nimport { CreateUser, User } from \"../../shared\";\r\nimport { FormBuilder, FormControl, Validators } from \"@angular/forms\";\r\nimport { UserCreationAction, UsersGenericActions } from \"../../domain/state/users.actions\";\r\nimport { MatDialogRef } from \"@angular/material/dialog\";\r\n\r\n@Component({\r\n    selector: 'ig-user-creation-form',\r\n    templateUrl: './user-creation-form.component.html',\r\n    styleUrl: './user-creation-form.component.scss',\r\n    changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class UserCreationFormComponent {\r\n    public displayNameControl = new FormControl('', {validators: [Validators.required]});\r\n    public emailControl = new FormControl('', {\r\n        validators: [\r\n            Validators.required,\r\n            Validators.email]});\r\n\r\n    constructor(\r\n        private readonly userService: UsersService,\r\n        private formBuilder: FormBuilder,\r\n        public dialogRef: MatDialogRef<UserCreationFormComponent>) {}\r\n\r\n    public form = this.formBuilder.group({\r\n        displayName: this.displayNameControl,\r\n        email: this.emailControl\r\n    });\r\n\r\n    public getDisplayNameErrorMessage() {\r\n        return this.displayNameControl.hasError('required') ? \"You must enter a value\" : ''\r\n    }\r\n    public getEmailErrorMessage(){\r\n        if (this.emailControl.hasError('required')) {\r\n            return 'You must enter a value';\r\n          }\r\n      \r\n          return this.emailControl.hasError('email') ? 'Not a valid email' : '';\r\n    }\r\n\r\n    public saveUser(){\r\n        if (this.form.valid) {\r\n            const formValue = this.form.value;\r\n            this.userService.dispatch(UserCreationAction.saveButtonClicked({\r\n                createUser: {\r\n                    displayName: formValue.displayName as string,\r\n                    email: formValue.email as string,\r\n                }\r\n            }))\r\n            this.dialogRef.close();\r\n        }\r\n    }\r\n}",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from \"@angular/core\";\r\nimport { CreateUser } from \"../../shared\";\r\nimport { FormGroup, Validators } from \"@angular/forms\";\r\nimport { MatDialogRef } from \"@angular/material/dialog\";\r\nimport { DynamicFormBuilder } from \"../../../components/forms/form-builder/form-builder\";\r\n\r\nexport const USER_CREATION_FORM_ID = 'user-creation-form';\r\n\r\n@Component({\r\n    selector: 'ig-user-creation-form',\r\n    templateUrl: './user-creation-form.component.html',\r\n    styleUrl: './user-creation-form.component.scss',\r\n})\r\nexport class UserCreationFormComponent implements OnInit, OnDestroy {\r\n    public formId = USER_CREATION_FORM_ID;\r\n    public form : FormGroup;\r\n    public formButtons = this.dynamicFormBuilder.formButtons;\r\n    public formFields = this.dynamicFormBuilder.formFields;\r\n\r\n    constructor(\r\n        private dynamicFormBuilder: DynamicFormBuilder<CreateUser>,\r\n        public dialogRef: MatDialogRef<UserCreationFormComponent, CreateUser>) {}\r\n    \r\n    public ngOnInit(): void {\r\n        this.dynamicFormBuilder\r\n            .addFormField({\r\n                name: 'displayName',\r\n                type: 'input',\r\n                defaultValue: '',\r\n                disabled: false,\r\n                validators: [Validators.required, Validators.maxLength(140)]\r\n            })\r\n            .addFormField({\r\n                name: 'email',\r\n                type: 'input',\r\n                defaultValue: '',\r\n                disabled: false,\r\n                validators: [Validators.required, Validators.maxLength(140), Validators.email]\r\n            });\r\n        this.form = this.dynamicFormBuilder.buildForm();\r\n    }\r\n\r\n    public ngOnDestroy(): void {\r\n        this.dynamicFormBuilder.destroyForm();\r\n    }\r\n}",
             "styleUrl": "./user-creation-form.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -1199,38 +1789,23 @@
                 "deprecationMessage": "",
                 "args": [
                     {
-                        "name": "userService",
-                        "type": "UsersService",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    },
-                    {
-                        "name": "formBuilder",
-                        "type": "FormBuilder",
+                        "name": "dynamicFormBuilder",
+                        "type": "DynamicFormBuilder<CreateUser>",
                         "deprecated": false,
                         "deprecationMessage": ""
                     },
                     {
                         "name": "dialogRef",
-                        "type": "MatDialogRef<UserCreationFormComponent>",
+                        "type": "MatDialogRef<UserCreationFormComponent | CreateUser>",
                         "deprecated": false,
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 19,
+                "line": 18,
                 "jsdoctags": [
                     {
-                        "name": "userService",
-                        "type": "UsersService",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    },
-                    {
-                        "name": "formBuilder",
-                        "type": "FormBuilder",
+                        "name": "dynamicFormBuilder",
+                        "type": "DynamicFormBuilder<CreateUser>",
                         "deprecated": false,
                         "deprecationMessage": "",
                         "tagName": {
@@ -1239,7 +1814,7 @@
                     },
                     {
                         "name": "dialogRef",
-                        "type": "MatDialogRef<UserCreationFormComponent>",
+                        "type": "MatDialogRef<UserCreationFormComponent | CreateUser>",
                         "deprecated": false,
                         "deprecationMessage": "",
                         "tagName": {
@@ -1249,11 +1824,15 @@
                 ]
             },
             "extends": [],
-            "templateData": "<mat-card class=\"formCard\">\r\n    <mat-card-header>\r\n        <h1>\r\n            Create User\r\n        </h1>\r\n    </mat-card-header>\r\n    <mat-card-content>\r\n        <form [formGroup]=\"form\" class=\"form\">\r\n            <mat-form-field class=\"formField\">\r\n                <mat-label>Display Name</mat-label>\r\n                <input matInput [formControl]=\"displayNameControl\">\r\n                @if (displayNameControl.invalid){\r\n                <mat-error>{{getDisplayNameErrorMessage()}}</mat-error>\r\n                }\r\n            </mat-form-field>\r\n            <mat-form-field class=\"formField\">\r\n                <mat-label>Email</mat-label>\r\n                <input matInput [formControl]=\"emailControl\">\r\n                @if (emailControl.invalid){\r\n                <mat-error>{{getEmailErrorMessage()}}</mat-error>\r\n                }\r\n            </mat-form-field>\r\n        </form>\r\n    </mat-card-content>\r\n    <mat-card-footer>\r\n        <button mat-raised-button (click)=\"saveUser()\">Guardar</button>\r\n    </mat-card-footer>\r\n</mat-card>"
+            "implements": [
+                "OnInit",
+                "OnDestroy"
+            ],
+            "templateData": "<ig-form [formId]=\"formId\" [formTitle]=\"'Create User'\" [formGroup]=\"form\" [formFields]=\"formFields\"\r\n    [formButtons]=\"formButtons\">\r\n</ig-form>"
         },
         {
             "name": "UserListComponent",
-            "id": "component-UserListComponent-aab9e81121ce4f370cfa366b27d3f4789d469382b98d3295bd61f3f8423ab07d8ca5824b22f7cdbf9fff849a97df420c693c292f51a455b2c938392b8389f856",
+            "id": "component-UserListComponent-6f288c341e71a4f652a334aceac328cab75635b8320319bdaf2b2c39bb7ddfecb14ae4122e02164cb1276c7b33a2e1c4de48bc0966572dbb41299e542992c2a3",
             "file": "src/users/feature/user-list/user-list.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1272,24 +1851,50 @@
             "outputsClass": [],
             "propertiesClass": [
                 {
-                    "name": "dataSource",
-                    "defaultValue": "new MatTableDataSource<User>()",
+                    "name": "listButtons",
+                    "defaultValue": "[\r\n        {\r\n            buttonDefinition: {\r\n                buttonType: 'normal',\r\n                kind: 'raised',\r\n                type: 'basic'\r\n            },\r\n            label: 'Edit',\r\n            disabled: false,\r\n        }\r\n    ]",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "",
+                    "type": "FormButton[]",
                     "optional": false,
                     "description": "",
-                    "line": 16,
+                    "line": 21,
                     "modifierKind": [
                         125
                     ]
                 },
                 {
-                    "name": "headers",
-                    "defaultValue": "['displayName', 'email']",
+                    "name": "listData",
+                    "defaultValue": "this.usersService.usersList$",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "[]",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 20,
+                    "modifierKind": [
+                        125
+                    ]
+                },
+                {
+                    "name": "listHeaders",
+                    "defaultValue": "['displayName', 'email', \"buttons\"]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "( | \"buttons\")[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 19,
+                    "modifierKind": [
+                        125
+                    ]
+                },
+                {
+                    "name": "listId",
+                    "defaultValue": "USERS_LIST_ID",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
                     "optional": false,
                     "description": "",
                     "line": 17,
@@ -1298,14 +1903,27 @@
                     ]
                 },
                 {
+                    "name": "listTitle",
+                    "defaultValue": "'Users'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 18,
+                    "modifierKind": [
+                        125
+                    ]
+                },
+                {
                     "name": "listToolbarButtons",
-                    "defaultValue": "[\r\n        {\r\n            buttonDefinition: {\r\n                buttonType: 'normal',\r\n                kind: 'raised',\r\n                type: 'basic'\r\n            },\r\n            label: 'New'\r\n        }\r\n    ]",
+                    "defaultValue": "[\r\n        {\r\n            buttonDefinition: {\r\n                buttonType: 'normal',\r\n                kind: 'raised',\r\n                type: 'basic'\r\n            },\r\n            disabled: false,\r\n            label: 'New'\r\n        }\r\n    ]",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "BasicButton[]",
                     "optional": false,
                     "description": "",
-                    "line": 18,
+                    "line": 32,
                     "modifierKind": [
                         125
                     ]
@@ -1318,7 +1936,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 28,
+                    "line": 43,
                     "modifierKind": [
                         125
                     ]
@@ -1330,7 +1948,7 @@
                     "type": "MatDialog",
                     "optional": false,
                     "description": "",
-                    "line": 31,
+                    "line": 47,
                     "modifierKind": [
                         125
                     ]
@@ -1343,7 +1961,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 40,
+                    "line": 50,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -1360,7 +1978,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from \"@angular/core\";\r\nimport { User } from \"../../shared\";\r\nimport { MatTableDataSource } from \"@angular/material/table\";\r\nimport { UsersService } from \"../../domain/services/users.service\";\r\nimport { filter, map } from \"rxjs\";\r\nimport { MatDialog } from \"@angular/material/dialog\";\r\nimport { UserCreationFormComponent } from \"../user-creation-form/user-creation-form.component\";\r\nimport { BasicButton } from \"../../../components/buttons\";\r\n\r\n@Component({\r\n    selector: \"ig-users-list\",\r\n    templateUrl: './user-list.component.html',\r\n    styleUrl: \"./user-list.component.scss\",\r\n})\r\nexport class UserListComponent {\r\n    public dataSource = new MatTableDataSource<User>();\r\n    public headers = ['displayName', 'email'];\r\n    public listToolbarButtons : BasicButton[] = [\r\n        {\r\n            buttonDefinition: {\r\n                buttonType: 'normal',\r\n                kind: 'raised',\r\n                type: 'basic'\r\n            },\r\n            label: 'New'\r\n        }\r\n    ];\r\n    public loaded$ = this.usersService.usersLoaded$;\r\n    constructor(\r\n        private readonly usersService: UsersService,\r\n        public userCreationDialog: MatDialog){\r\n        this.usersService.usersList$.pipe(\r\n            filter(x => !!x),\r\n            map((data) => {\r\n                this.dataSource.data = data;\r\n            })\r\n        ).subscribe();\r\n    }\r\n\r\n    public openUserCreationDialog() {\r\n        this.userCreationDialog.open(UserCreationFormComponent, {\r\n            width: '750px',\r\n            height: 'auto'\r\n        })\r\n    }\r\n}",
+            "sourceCode": "import { Component } from \"@angular/core\";\r\nimport { User } from \"../../shared\";\r\nimport { UsersService } from \"../../domain/services/users.service\";\r\nimport { MatDialog, } from \"@angular/material/dialog\";\r\nimport { USER_CREATION_FORM_ID } from \"../user-creation-form/user-creation-form.component\";\r\nimport { BasicButton, FormButton } from \"../../../components/buttons\";\r\nimport { UserCreationActions, UsersGenericActions } from \"../../domain/state/users.actions\";\r\n\r\nexport const USERS_LIST_ID = 'users-list';\r\n\r\n@Component({\r\n    selector: \"ig-users-list\",\r\n    templateUrl: './user-list.component.html',\r\n    styleUrl: \"./user-list.component.scss\",\r\n})\r\nexport class UserListComponent {\r\n    public listId = USERS_LIST_ID;\r\n    public listTitle = 'Users';\r\n    public listHeaders : (string & keyof User | 'buttons')[] = ['displayName', 'email', \"buttons\"];\r\n    public listData = this.usersService.usersList$;\r\n    public listButtons: FormButton[] = [\r\n        {\r\n            buttonDefinition: {\r\n                buttonType: 'normal',\r\n                kind: 'raised',\r\n                type: 'basic'\r\n            },\r\n            label: 'Edit',\r\n            disabled: false,\r\n        }\r\n    ]\r\n    public listToolbarButtons : BasicButton[] = [\r\n        {\r\n            buttonDefinition: {\r\n                buttonType: 'normal',\r\n                kind: 'raised',\r\n                type: 'basic'\r\n            },\r\n            disabled: false,\r\n            label: 'New'\r\n        }\r\n    ];\r\n    public loaded$ = this.usersService.usersLoaded$;\r\n\r\n    constructor(\r\n        private readonly usersService: UsersService,\r\n        public userCreationDialog: MatDialog){\r\n    }\r\n\r\n    public openUserCreationDialog() {\r\n        this.usersService.dispatch(\r\n            UserCreationActions.openCreationDialog({\r\n                dialogConfig:{\r\n                    id: USER_CREATION_FORM_ID,\r\n                    width: '35%',\r\n                    height: 'auto',\r\n        }}))\r\n    }\r\n}",
             "styleUrl": "./user-list.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -1384,7 +2002,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 28,
+                "line": 43,
                 "jsdoctags": [
                     {
                         "name": "usersService",
@@ -1407,7 +2025,7 @@
                 ]
             },
             "extends": [],
-            "templateData": "<mat-toolbar>\r\n    <button mat-raised-button (click)=\"openUserCreationDialog()\"> New </button>\r\n</mat-toolbar>\r\n@if (loaded$ | async) {\r\n<table mat-table [dataSource]=\"dataSource\" class=\"mat-elevation-z8\">\r\n    <ng-container matColumnDef=\"correlationId\">\r\n        <th mat-header-cell *matHeaderCellDef>ID</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.correlationId}}</td>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"displayName\">\r\n        <th mat-header-cell *matHeaderCellDef>Display Name</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.displayName}}</td>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"email\">\r\n        <th mat-header-cell *matHeaderCellDef>Email</th>\r\n        <td mat-cell *matCellDef=\"let element\">{{element.email}}</td>\r\n    </ng-container>\r\n    <tr mat-header-row *matHeaderRowDef=\"headers\"></tr>\r\n    <tr mat-row *matRowDef=\"let row; columns: headers\"></tr>\r\n</table>\r\n}"
+            "templateData": "<mat-toolbar>\r\n    <button mat-raised-button (click)=\"openUserCreationDialog()\"> New </button>\r\n</mat-toolbar>\r\n@if (loaded$ | async) {\r\n<ig-list [listId]=\"listId\" [listTitle]=\"listTitle\" [listHeaders]=\"listHeaders\" [listData]=\"listData\"\r\n    [listButtons]=\"listButtons\"></ig-list>\r\n} @else {\r\n<mat-spinner></mat-spinner>\r\n}"
         },
         {
             "name": "UsersRoutingComponent",
@@ -1474,13 +2092,13 @@
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-64f48702c0057239d6572b7db6737a9748ac5bba7f4869ee500929a17d6178da863212b818b55732ee261adc2e0858553274fc5ead286b3e20a0b5a4e1fe2798",
+            "id": "module-AppModule-15530f94c0390df62befe2ec9a3768dde95bce923847b402352d0ce5132a90390fbf3f4e9f5c130136ad4793b4a30018d92bf1921c89fad46852bd915e93ba1a",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule, isDevMode } from '@angular/core';\r\n\r\nimport { AppComponent } from './app.component';\r\nimport { RouterOutlet } from '@angular/router';\r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\r\nimport { provideAnimationsAsync } from '@angular/platform-browser/animations/async';\r\nimport { ToolbarModule } from '../shell/toolbar/toolbar.module';\r\nimport { NavbarModule } from '../shell/navbar/navbar.module';\r\nimport { APOLLO_OPTIONS, ApolloModule } from 'apollo-angular';\r\nimport { HttpLink } from 'apollo-angular/http';\r\nimport { InMemoryCache } from '@apollo/client/core'\r\nimport { HttpClientModule } from '@angular/common/http';\r\nimport { uri } from './graphql.module';\nimport { StoreModule } from '@ngrx/store';\nimport { StoreRouterConnectingModule } from '@ngrx/router-store';\nimport { EffectsModule } from '@ngrx/effects';\nimport { StoreDevtoolsModule } from '@ngrx/store-devtools'\r\n\r\n@NgModule({\r\n    declarations: [AppComponent],\r\n    imports: [\r\n        BrowserModule,\r\n        BrowserAnimationsModule,\r\n        ApolloModule,\r\n        HttpClientModule,\r\n        ToolbarModule,\r\n        NavbarModule,\r\n        RouterOutlet,\r\n        AppRoutingModule,\r\n        StoreModule.forRoot({}, {}),\r\n        StoreRouterConnectingModule.forRoot(),\r\n        EffectsModule.forRoot([]),\r\n        StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })],\r\n    exports: [],\r\n    providers: [\r\n      provideAnimationsAsync(),\r\n      {\r\n        provide: APOLLO_OPTIONS,\r\n        useFactory(httpLink: HttpLink){\r\n          return {\r\n            cache: new InMemoryCache(),\r\n            link: httpLink.create({\r\n              uri: uri\r\n            })\r\n          }\r\n        },\r\n        deps: [HttpLink]\r\n      }\r\n    ],\r\n    bootstrap: [AppComponent]\r\n})\r\nexport class AppModule { }\r\n",
+            "sourceCode": "import { NgModule, isDevMode } from '@angular/core';\r\n\r\nimport { AppComponent } from './app.component';\r\nimport { RouterOutlet } from '@angular/router';\r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\r\nimport { provideAnimationsAsync } from '@angular/platform-browser/animations/async';\r\nimport { ToolbarModule } from '../shell/toolbar/toolbar.module';\r\nimport { NavbarModule } from '../shell/navbar/navbar.module';\r\nimport { APOLLO_OPTIONS, ApolloModule } from 'apollo-angular';\r\nimport { HttpLink } from 'apollo-angular/http';\r\nimport { InMemoryCache } from '@apollo/client/core'\r\nimport { HttpClientModule } from '@angular/common/http';\r\nimport { uri } from './graphql.module';\r\nimport { StoreModule } from '@ngrx/store';\r\nimport { StoreRouterConnectingModule } from '@ngrx/router-store';\r\nimport { EffectsModule } from '@ngrx/effects';\r\nimport { StoreDevtoolsModule } from '@ngrx/store-devtools';\r\n\r\n@NgModule({\r\n    declarations: [AppComponent],\r\n    imports: [\r\n        BrowserModule,\r\n        BrowserAnimationsModule,\r\n        ApolloModule,\r\n        HttpClientModule,\r\n        ToolbarModule,\r\n        NavbarModule,\r\n        RouterOutlet,\r\n        AppRoutingModule,\r\n        StoreModule.forRoot({}, {}),\r\n        StoreRouterConnectingModule.forRoot(),\r\n        EffectsModule.forRoot([]),\r\n        StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })],\r\n    exports: [],\r\n    providers: [\r\n      provideAnimationsAsync(),\r\n      {\r\n        provide: APOLLO_OPTIONS,\r\n        useFactory(httpLink: HttpLink){\r\n          return {\r\n            cache: new InMemoryCache(),\r\n            link: httpLink.create({\r\n              uri: uri\r\n            })\r\n          }\r\n        },\r\n        deps: [HttpLink]\r\n      }\r\n    ],\r\n    bootstrap: [AppComponent]\r\n})\r\nexport class AppModule { }\r\n",
             "children": [
                 {
                     "type": "providers",
@@ -1611,13 +2229,13 @@
         },
         {
             "name": "ComponentsModule",
-            "id": "module-ComponentsModule-11a4ac8767ad9636af5ce9b31d25ee8bc2852a3ba363786cf3a18597f9a07fea1f8b7b6309d5287c08e2fa305eca759bbed8711b40ae7ca65e1556e7917b6172",
+            "id": "module-ComponentsModule-119571e6e8d1ee5a6995370c152bab597d37a3b6689f5e9550c13eb8ac84b1e883d73462bb9f347c17505dc7217d1dc0c24b7b23f8e9c3d5ecad8c46ac62f92b",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/components/components.module.ts",
             "methods": [],
-            "sourceCode": "import { CommonModule } from \"@angular/common\";\r\nimport { NgModule } from \"@angular/core\";\r\nimport { ButtonsModule } from \"./buttons\";\r\nimport { CustomFormsModule } from \"./forms/custom-forms.module\";\r\n\r\n@NgModule({\r\n    imports: [\r\n        CommonModule,\r\n        ButtonsModule,\r\n        CustomFormsModule],\r\n})\r\nexport class ComponentsModule {}",
+            "sourceCode": "import { CommonModule } from \"@angular/common\";\r\nimport { NgModule } from \"@angular/core\";\r\nimport { ButtonsModule } from \"./buttons\";\r\nimport { CustomFormsModule } from \"./forms/custom-forms.module\";\r\nimport { CustomListsModule } from \"./lists/custom-lists.module\";\r\n\r\n@NgModule({\r\n    imports: [\r\n        CommonModule,\r\n        ButtonsModule,\r\n        CustomFormsModule,\r\n        CustomListsModule],\r\n    exports: [\r\n        ButtonsModule, CustomFormsModule, CustomListsModule]\r\n})\r\nexport class ComponentsModule {}",
             "children": [
                 {
                     "type": "providers",
@@ -1635,12 +2253,25 @@
                         },
                         {
                             "name": "CustomFormsModule"
+                        },
+                        {
+                            "name": "CustomListsModule"
                         }
                     ]
                 },
                 {
                     "type": "exports",
-                    "elements": []
+                    "elements": [
+                        {
+                            "name": "ButtonsModule"
+                        },
+                        {
+                            "name": "CustomFormsModule"
+                        },
+                        {
+                            "name": "CustomListsModule"
+                        }
+                    ]
                 },
                 {
                     "type": "bootstrap",
@@ -1654,13 +2285,13 @@
         },
         {
             "name": "CustomFormsModule",
-            "id": "module-CustomFormsModule-ee15ac884ff2a86d029e419922178fc03d520c8aab298f4c6d244e2e602801acc0197b3b785bc3819f80561ed97b444a3590ffb9754363107417e1d327f632c5",
+            "id": "module-CustomFormsModule-f8ed0d9c2c713b64949162d8ebecea88ca2253d1ea67d8f8cc9a6f8c7dfea440cd1dd525f8eedfa996b199483268f1658777652eb364e09d8ac63c534e261cea",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/components/forms/custom-forms.module.ts",
             "methods": [],
-            "sourceCode": "import { CommonModule } from \"@angular/common\";\r\nimport { NgModule } from \"@angular/core\";\r\nimport { FormsModule, ReactiveFormsModule } from \"@angular/forms\";\r\nimport { MatFormFieldModule } from \"@angular/material/form-field\";\r\nimport { MatInputModule } from \"@angular/material/input\";\r\nimport { FormFieldComponent } from \"./form-field/form-field.component\";\r\nimport { MatSelect } from \"@angular/material/select\";\r\nimport { MatOptionModule } from \"@angular/material/core\";\r\nimport { FormComponent } from \"./form/form.component\";\r\nimport { ButtonsModule } from \"../buttons\";\r\nimport { MatCardModule } from \"@angular/material/card\";\r\n\r\n@NgModule({\r\n    imports: [\r\n        CommonModule,\r\n        ReactiveFormsModule,\r\n        FormsModule,\r\n        MatFormFieldModule,\r\n        MatInputModule,\r\n        MatSelect,\r\n        MatOptionModule,\r\n        MatCardModule,\r\n        ButtonsModule],\r\n        declarations: [\r\n            FormComponent,\r\n            FormFieldComponent],\r\n        exports: [\r\n            FormComponent,\r\n            FormFieldComponent]\r\n})\r\nexport class CustomFormsModule {}",
+            "sourceCode": "import { CommonModule } from \"@angular/common\";\r\nimport { NgModule } from \"@angular/core\";\r\nimport { FormsModule, ReactiveFormsModule } from \"@angular/forms\";\r\nimport { MatFormFieldModule } from \"@angular/material/form-field\";\r\nimport { MatInputModule } from \"@angular/material/input\";\r\nimport { FormFieldComponent } from \"./form-field/form-field.component\";\r\nimport { MatSelect } from \"@angular/material/select\";\r\nimport { MatOptionModule } from \"@angular/material/core\";\r\nimport { FormComponent } from \"./form/form.component\";\r\nimport { ButtonsModule } from \"../buttons\";\r\nimport { MatCardModule } from \"@angular/material/card\";\r\nimport { MatButtonModule } from \"@angular/material/button\";\r\n\r\n@NgModule({\r\n    imports: [\r\n        CommonModule,\r\n        ReactiveFormsModule,\r\n        FormsModule,\r\n        MatFormFieldModule,\r\n        MatInputModule,\r\n        MatSelect,\r\n        MatOptionModule,\r\n        MatCardModule,\r\n        MatButtonModule,\r\n        ButtonsModule],\r\n        declarations: [\r\n            FormComponent,\r\n            FormFieldComponent],\r\n        exports: [\r\n            FormComponent,\r\n            FormFieldComponent]\r\n})\r\nexport class CustomFormsModule {}",
             "children": [
                 {
                     "type": "providers",
@@ -1696,6 +2327,54 @@
                         },
                         {
                             "name": "FormFieldComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "CustomListsModule",
+            "id": "module-CustomListsModule-24b2b3aa655bb586bb330ef36b4a674189f7a7fba5d3bd4acdd36c78dc5d5137a09cce6a6019a6a3fa4715abbf14766961e03153926cdef7f1f203cdae76af3c",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/components/lists/custom-lists.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from \"@angular/core\";\r\nimport { ListComponent } from \"./list/list.component\";\r\nimport { MatTableModule } from \"@angular/material/table\";\r\nimport { ButtonsModule } from \"../buttons\";\r\nimport { MatCardModule } from \"@angular/material/card\";\r\nimport { FlexLayoutModule } from \"@angular/flex-layout\";\r\n\r\n@NgModule({\r\n    declarations: [ListComponent],\r\n    imports: [MatTableModule, ButtonsModule, MatCardModule, FlexLayoutModule],\r\n    exports: [ListComponent]\r\n})\r\nexport class CustomListsModule {}",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "ListComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "ButtonsModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "ListComponent"
                         }
                     ]
                 },
@@ -1799,13 +2478,13 @@
         },
         {
             "name": "UsersModule",
-            "id": "module-UsersModule-dbc3ecbc00989e2f3feb01ce592243e647b1bf02ebb2450d4a2f0e258355c756b4e2e3fb375263cb764006106a618dd63b990acf14640216213209aaf43ebea4",
+            "id": "module-UsersModule-01f9ba682c6ee3a8b4052398fbd0f11b1c7a30d1bdbf44760079a68ca2fbaf6bc23d06ae68d0a4117f87022f472505a87a6da965e3d5cb06b853597fcfd64933",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/users/users.module.ts",
             "methods": [],
-            "sourceCode": "import { CommonModule } from \"@angular/common\";\r\nimport { NgModule } from \"@angular/core\";\r\nimport { UsersRoutingModule } from \"./users-routing.module\";\r\nimport { UsersRoutingComponent } from \"./users-routing.component\";\r\nimport { MatTableModule } from '@angular/material/table'\r\nimport { UserListComponent } from \"./feature/user-list/user-list.component\";\r\nimport { ToolbarModule } from \"../shell/toolbar/toolbar.module\";\r\nimport { StoreModule } from \"@ngrx/store\";\r\nimport { USERS_FEATURE_KEY, usersReducer } from \"./domain/state/users.reducer\";\r\nimport { EffectsModule } from \"@ngrx/effects\";\r\nimport { UsersEffects } from \"./domain/state/users.effects\";\r\nimport { MatToolbarModule } from '@angular/material/toolbar';\r\nimport { MatButtonModule } from '@angular/material/button';\r\nimport { MatDialogModule } from '@angular/material/dialog';\r\nimport { MatFormFieldModule } from \"@angular/material/form-field\";\r\nimport { FormsModule, ReactiveFormsModule } from \"@angular/forms\";\r\nimport { MatInputModule } from '@angular/material/input';\r\nimport { UserCreationFormComponent } from \"./feature/user-creation-form/user-creation-form.component\";\r\nimport { MatCardModule } from '@angular/material/card';\r\n\r\nconst MaterialModules = [\r\n    MatTableModule,\r\n    MatToolbarModule,\r\n    MatButtonModule,\r\n    MatDialogModule,\r\n    MatFormFieldModule,\r\n    MatInputModule,\r\n    MatCardModule,\r\n]\r\n\r\n@NgModule({\r\n    declarations: [\r\n        UsersRoutingComponent,\r\n        UserListComponent,\r\n        UserCreationFormComponent],\r\n    imports: [\r\n        CommonModule,\r\n        ToolbarModule,\r\n        ReactiveFormsModule,\r\n        FormsModule,\r\n        MaterialModules,\r\n        UsersRoutingModule,\r\n        StoreModule.forFeature(\r\n            USERS_FEATURE_KEY,\r\n            usersReducer\r\n        ),\r\n        EffectsModule.forFeature([UsersEffects])],\r\n    exports: []\r\n})\r\nexport class UsersModule {}",
+            "sourceCode": "import { CommonModule } from \"@angular/common\";\r\nimport { NgModule } from \"@angular/core\";\r\nimport { UsersRoutingModule } from \"./users-routing.module\";\r\nimport { UsersRoutingComponent } from \"./users-routing.component\";\r\nimport { MatTableModule } from '@angular/material/table'\r\nimport { UserListComponent } from \"./feature/user-list/user-list.component\";\r\nimport { ToolbarModule } from \"../shell/toolbar/toolbar.module\";\r\nimport { StoreModule } from \"@ngrx/store\";\r\nimport { USERS_FEATURE_KEY, usersReducer } from \"./domain/state/users.reducer\";\r\nimport { EffectsModule } from \"@ngrx/effects\";\r\nimport { UsersEffects } from \"./domain/state/users.effects\";\r\nimport { MatToolbarModule } from '@angular/material/toolbar';\r\nimport { MatButtonModule } from '@angular/material/button';\r\nimport { MatDialogModule } from '@angular/material/dialog';\r\nimport { MatFormFieldModule } from \"@angular/material/form-field\";\r\nimport { FormsModule, ReactiveFormsModule } from \"@angular/forms\";\r\nimport { MatInputModule } from '@angular/material/input';\r\nimport { UserCreationFormComponent } from \"./feature/user-creation-form/user-creation-form.component\";\r\nimport { MatCardModule } from '@angular/material/card';\r\nimport { ComponentsModule } from \"../components/components.module\";\r\nimport { MatProgressSpinnerModule } from '@angular/material/progress-spinner';\r\n\r\nconst MaterialModules = [\r\n    MatTableModule,\r\n    MatToolbarModule,\r\n    MatButtonModule,\r\n    MatDialogModule,\r\n    MatFormFieldModule,\r\n    MatInputModule,\r\n    MatCardModule,\r\n    MatProgressSpinnerModule\r\n]\r\n\r\n@NgModule({\r\n    declarations: [\r\n        UsersRoutingComponent,\r\n        UserListComponent,\r\n        UserCreationFormComponent],\r\n    imports: [\r\n        CommonModule,\r\n        ToolbarModule,\r\n        ReactiveFormsModule,\r\n        FormsModule,\r\n        MaterialModules,\r\n        UsersRoutingModule,\r\n        ComponentsModule,\r\n        StoreModule.forFeature(\r\n            USERS_FEATURE_KEY,\r\n            usersReducer\r\n        ),\r\n        EffectsModule.forFeature([UsersEffects])],\r\n    exports: []\r\n})\r\nexport class UsersModule {}",
             "children": [
                 {
                     "type": "providers",
@@ -1890,6 +2569,16 @@
     "miscellaneous": {
         "variables": [
             {
+                "name": "FormsActions",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/components/forms/form/state/form.actions.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "createActionGroup({\r\n    source: 'Form',\r\n    events: {\r\n        'Save form requested': props<{id: string, data: any}>(),\r\n        'Cancel form requested': props<{id: string}>(),\r\n    }\r\n})"
+            },
+            {
                 "name": "getUsersState",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1927,7 +2616,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "[]",
-                "defaultValue": "[\r\n    MatTableModule,\r\n    MatToolbarModule,\r\n    MatButtonModule,\r\n    MatDialogModule,\r\n    MatFormFieldModule,\r\n    MatInputModule,\r\n    MatCardModule,\r\n]"
+                "defaultValue": "[\r\n    MatTableModule,\r\n    MatToolbarModule,\r\n    MatButtonModule,\r\n    MatDialogModule,\r\n    MatFormFieldModule,\r\n    MatInputModule,\r\n    MatCardModule,\r\n    MatProgressSpinnerModule\r\n]"
             },
             {
                 "name": "MaterialModules",
@@ -1947,7 +2636,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
-                "defaultValue": "createReducer(\r\n    initialState,\r\n    on(UsersGenericActions.usersListLoaded, (state, action) =>({\r\n        ...state,\r\n        usersLoaded: true,\r\n        usersList: action.usersList\r\n    }))\r\n)"
+                "defaultValue": "createReducer(\r\n    initialState,\r\n    on(UsersGenericActions.usersListLoaded, (state, action) =>({\r\n        ...state,\r\n        usersLoaded: true,\r\n        usersList: action.usersList\r\n    })),\r\n    on(UserCreationActions.userCreationSucceeded, state =>({\r\n        ...state,\r\n        usersLoaded: false,\r\n    })),\r\n    on(UsersGenericActions.usersListUpdated, (state, action) => ({\r\n        ...state,\r\n        usersLoaded: true,\r\n        usersList: state.usersList.concat(action.user)\r\n    }))\r\n)"
             },
             {
                 "name": "selectUsersList",
@@ -1980,14 +2669,24 @@
                 "defaultValue": "'http://localhost:5038/graphql/'"
             },
             {
-                "name": "UserCreationAction",
+                "name": "USER_CREATION_FORM_ID",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/users/feature/user-creation-form/user-creation-form.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "string",
+                "defaultValue": "'user-creation-form'"
+            },
+            {
+                "name": "UserCreationActions",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/users/domain/state/users.actions.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
-                "defaultValue": "createActionGroup({\r\n    source: \"User Creation form\",\r\n    events: {\r\n        \"Save button clicked\": props<{createUser: CreateUser}>(),\r\n        \"User creation succeeded\": props<{user: User}>(),\r\n    }\r\n})"
+                "defaultValue": "createActionGroup({\r\n    source: \"User Creation form\",\r\n    events: {\r\n        \"Open creation dialog\": props<{dialogConfig: MatDialogConfig}>(),\r\n        \"Save user requested\": props<{data: CreateUser}>(),\r\n        \"User creation succeeded\": props<{user: User}>(),\r\n    }\r\n})"
             },
             {
                 "name": "USERS_FEATURE_KEY",
@@ -2000,6 +2699,16 @@
                 "defaultValue": "'users'"
             },
             {
+                "name": "USERS_LIST_ID",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/users/feature/user-list/user-list.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "string",
+                "defaultValue": "'users-list'"
+            },
+            {
                 "name": "UsersGenericActions",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -2007,10 +2716,51 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
-                "defaultValue": "createActionGroup({\r\n    source: \"Users\",\r\n    events: {\r\n        \"Init\": emptyProps(),\r\n        \"Users List Loaded\": props<{usersList: User[]}>(),\r\n        \"New User button clicked\": emptyProps()\r\n    }\r\n})"
+                "defaultValue": "createActionGroup({\r\n    source: \"Users\",\r\n    events: {\r\n        \"Init\": emptyProps(),\r\n        \"Users List Loaded\": props<{usersList: User[]}>(),\r\n        \"Users List Updated\": props<{user: User}>(),\r\n        \"New User button clicked\": emptyProps()\r\n    }\r\n})"
             }
         ],
         "functions": [
+            {
+                "name": "addUserOrdered",
+                "file": "src/users/domain/state/users.reducer.ts",
+                "ctype": "miscellaneous",
+                "subtype": "function",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "args": [
+                    {
+                        "name": "list",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "user",
+                        "type": "User",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "jsdoctags": [
+                    {
+                        "name": "list",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "user",
+                        "type": "User",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
             {
                 "name": "usersReducer",
                 "file": "src/users/domain/state/users.reducer.ts",
@@ -2060,7 +2810,7 @@
                 "name": "FormType",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "\"input\" | \"select\" | \"text-area\"",
+                "rawtype": "\"input\" | \"text-area\"",
                 "file": "src/components/forms/model.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -2070,6 +2820,18 @@
         ],
         "enumerations": [],
         "groupedVariables": {
+            "src/components/forms/form/state/form.actions.ts": [
+                {
+                    "name": "FormsActions",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/components/forms/form/state/form.actions.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "createActionGroup({\r\n    source: 'Form',\r\n    events: {\r\n        'Save form requested': props<{id: string, data: any}>(),\r\n        'Cancel form requested': props<{id: string}>(),\r\n    }\r\n})"
+                }
+            ],
             "src/users/domain/state/users.selectors.ts": [
                 {
                     "name": "getUsersState",
@@ -2121,7 +2883,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
-                    "defaultValue": "createReducer(\r\n    initialState,\r\n    on(UsersGenericActions.usersListLoaded, (state, action) =>({\r\n        ...state,\r\n        usersLoaded: true,\r\n        usersList: action.usersList\r\n    }))\r\n)"
+                    "defaultValue": "createReducer(\r\n    initialState,\r\n    on(UsersGenericActions.usersListLoaded, (state, action) =>({\r\n        ...state,\r\n        usersLoaded: true,\r\n        usersList: action.usersList\r\n    })),\r\n    on(UserCreationActions.userCreationSucceeded, state =>({\r\n        ...state,\r\n        usersLoaded: false,\r\n    })),\r\n    on(UsersGenericActions.usersListUpdated, (state, action) => ({\r\n        ...state,\r\n        usersLoaded: true,\r\n        usersList: state.usersList.concat(action.user)\r\n    }))\r\n)"
                 },
                 {
                     "name": "USERS_FEATURE_KEY",
@@ -2155,7 +2917,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "[]",
-                    "defaultValue": "[\r\n    MatTableModule,\r\n    MatToolbarModule,\r\n    MatButtonModule,\r\n    MatDialogModule,\r\n    MatFormFieldModule,\r\n    MatInputModule,\r\n    MatCardModule,\r\n]"
+                    "defaultValue": "[\r\n    MatTableModule,\r\n    MatToolbarModule,\r\n    MatButtonModule,\r\n    MatDialogModule,\r\n    MatFormFieldModule,\r\n    MatInputModule,\r\n    MatCardModule,\r\n    MatProgressSpinnerModule\r\n]"
                 }
             ],
             "src/shell/toolbar/toolbar.module.ts": [
@@ -2182,16 +2944,28 @@
                     "defaultValue": "'http://localhost:5038/graphql/'"
                 }
             ],
+            "src/users/feature/user-creation-form/user-creation-form.component.ts": [
+                {
+                    "name": "USER_CREATION_FORM_ID",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/users/feature/user-creation-form/user-creation-form.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "defaultValue": "'user-creation-form'"
+                }
+            ],
             "src/users/domain/state/users.actions.ts": [
                 {
-                    "name": "UserCreationAction",
+                    "name": "UserCreationActions",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "src/users/domain/state/users.actions.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
-                    "defaultValue": "createActionGroup({\r\n    source: \"User Creation form\",\r\n    events: {\r\n        \"Save button clicked\": props<{createUser: CreateUser}>(),\r\n        \"User creation succeeded\": props<{user: User}>(),\r\n    }\r\n})"
+                    "defaultValue": "createActionGroup({\r\n    source: \"User Creation form\",\r\n    events: {\r\n        \"Open creation dialog\": props<{dialogConfig: MatDialogConfig}>(),\r\n        \"Save user requested\": props<{data: CreateUser}>(),\r\n        \"User creation succeeded\": props<{user: User}>(),\r\n    }\r\n})"
                 },
                 {
                     "name": "UsersGenericActions",
@@ -2201,12 +2975,65 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
-                    "defaultValue": "createActionGroup({\r\n    source: \"Users\",\r\n    events: {\r\n        \"Init\": emptyProps(),\r\n        \"Users List Loaded\": props<{usersList: User[]}>(),\r\n        \"New User button clicked\": emptyProps()\r\n    }\r\n})"
+                    "defaultValue": "createActionGroup({\r\n    source: \"Users\",\r\n    events: {\r\n        \"Init\": emptyProps(),\r\n        \"Users List Loaded\": props<{usersList: User[]}>(),\r\n        \"Users List Updated\": props<{user: User}>(),\r\n        \"New User button clicked\": emptyProps()\r\n    }\r\n})"
+                }
+            ],
+            "src/users/feature/user-list/user-list.component.ts": [
+                {
+                    "name": "USERS_LIST_ID",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/users/feature/user-list/user-list.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "defaultValue": "'users-list'"
                 }
             ]
         },
         "groupedFunctions": {
             "src/users/domain/state/users.reducer.ts": [
+                {
+                    "name": "addUserOrdered",
+                    "file": "src/users/domain/state/users.reducer.ts",
+                    "ctype": "miscellaneous",
+                    "subtype": "function",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "args": [
+                        {
+                            "name": "list",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "user",
+                            "type": "User",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "list",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "user",
+                            "type": "User",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
                 {
                     "name": "usersReducer",
                     "file": "src/users/domain/state/users.reducer.ts",
@@ -2259,7 +3086,7 @@
                     "name": "FormType",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
-                    "rawtype": "\"input\" | \"select\" | \"text-area\"",
+                    "rawtype": "\"input\" | \"text-area\"",
                     "file": "src/components/forms/model.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
@@ -2326,7 +3153,7 @@
         ]
     },
     "coverage": {
-        "count": 0,
+        "count": 1,
         "status": "low",
         "files": [
             {
@@ -2385,6 +3212,15 @@
                 "status": "low"
             },
             {
+                "filePath": "src/components/forms/form-builder/form-builder.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "DynamicFormBuilder",
+                "coveragePercent": 44,
+                "coverageCount": "4/9",
+                "status": "medium"
+            },
+            {
                 "filePath": "src/components/forms/form-field/form-field.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -2399,16 +3235,35 @@
                 "linktype": "component",
                 "name": "FormComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/6",
+                "coverageCount": "0/13",
+                "status": "low"
+            },
+            {
+                "filePath": "src/components/forms/form/state/form.actions.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "FormsActions",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
                 "filePath": "src/components/forms/model.ts",
                 "type": "interface",
                 "linktype": "interface",
-                "name": "FormField",
+                "name": "DynamicFormField",
                 "coveragePercent": 0,
-                "coverageCount": "0/4",
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "src/components/lists/list/list.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ListComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/9",
                 "status": "low"
             },
             {
@@ -2499,7 +3354,7 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "UserCreationAction",
+                "name": "UserCreationActions",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -2520,7 +3375,7 @@
                 "linktype": "injectable",
                 "name": "UsersEffects",
                 "coveragePercent": 0,
-                "coverageCount": "0/4",
+                "coverageCount": "0/9",
                 "status": "low"
             },
             {
@@ -2538,7 +3393,17 @@
                 "linktype": "interface",
                 "name": "UsersState",
                 "coveragePercent": 0,
-                "coverageCount": "0/3",
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/users/domain/state/users.reducer.ts",
+                "type": "function",
+                "linktype": "miscellaneous",
+                "linksubtype": "function",
+                "name": "addUserOrdered",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
@@ -2621,12 +3486,32 @@
                 "status": "low"
             },
             {
+                "filePath": "src/users/feature/user-creation-form/user-creation-form.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "USER_CREATION_FORM_ID",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "src/users/feature/user-list/user-list.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "UserListComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/8",
+                "coverageCount": "0/11",
+                "status": "low"
+            },
+            {
+                "filePath": "src/users/feature/user-list/user-list.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "USERS_LIST_ID",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {

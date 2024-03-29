@@ -7,11 +7,16 @@ import { provideMockStore } from '@ngrx/store/testing';
 const SaveAction = createAction('[Form Story] Save button clicked');
 const CancelAction = createAction('[Form Story] Cancel button clicked');
 
+interface example {
+    displayName: string;
+    email: string;
+}
+
 const initialState = {
     value: 'value'
 }
 
-const form : Meta<FormComponent> = {
+const form : Meta<FormComponent<example>> = {
     title: 'custom-components/form-field',
     component: FormComponent,
     decorators: [
@@ -25,20 +30,24 @@ const form : Meta<FormComponent> = {
 }
 
 export default form;
-type FormStory = StoryObj<FormComponent>;
+type FormStory = StoryObj<FormComponent<example>>;
 
 export const BasicForm : FormStory = {
     args: {
         formTitle: 'Form Title',
-        fields: [
+        formFields: [
             {
+                name: 'displayName',
                 type: 'input',
-                label: 'Display Name',
+                defaultValue: '',
+                validators: [],
                 disabled: false
             },
             {
+                name: 'email',
                 type: 'input',
-                label: 'Email',
+                defaultValue: '',
+                validators: [],
                 disabled: false,
             }
         ],

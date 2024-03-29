@@ -11,6 +11,6 @@ import { ButtonComponent } from "./button/button.component";
         MatIconModule
     ],
     declarations: [ButtonComponent],
-    exports: [ButtonComponent]
+    exports: [ButtonComponent, MatButtonModule, MatIconModule]
 })
 export class ButtonsModule {}
