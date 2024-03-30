@@ -19,6 +19,7 @@ import { UserCreationFormComponent } from "./feature/user-creation-form/user-cre
 import { MatCardModule } from '@angular/material/card';
 import { ComponentsModule } from "../components/components.module";
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { UserEditionFormComponent } from "./feature/user-edition-form/user-edition-form.component";
 
 const MaterialModules = [
     MatTableModule,
@@ -35,7 +36,8 @@ const MaterialModules = [
     declarations: [
         UsersRoutingComponent,
         UserListComponent,
-        UserCreationFormComponent],
+        UserCreationFormComponent,
+        UserEditionFormComponent],
     imports: [
         CommonModule,
         ToolbarModule,

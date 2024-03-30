@@ -14,12 +14,25 @@ export class UsersService {
 
     public usersLoaded$ = this.store.select(UsersSelectors.selectUsersLoaded);
     public usersList$ = this.store.select(UsersSelectors.selectUsersList);
+    public currentUser$ = this.store.select(UsersSelectors.selectCurrentUser);
 
     public dispatch(action: Action){
         this.store.dispatch(action)
     }
 
-    public navigate(){
-        
+    public navigate(url: string[], isRelative: boolean){
+        let urlArray: string[] = [];
+        if (isRelative) {
+            urlArray.push(this.router.url);
+            url.forEach((x) => urlArray.push(x));
+            this.router.navigate(urlArray);
+        } else {
+            url.forEach((x) => urlArray.push(x));
+            this.router.navigate(url);
+        }
+    }
+
+    public navigateToRoot() {
+        this.navigate(['users'], false)
     }
 }

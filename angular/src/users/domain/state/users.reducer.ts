@@ -1,21 +1,18 @@
 import { Action, createReducer, on } from "@ngrx/store";
 import { User } from "../../shared";
-import { UserCreationActions, UsersGenericActions } from "./users.actions";
+import { UserCreationActions, UserEditionActions, UsersGenericActions } from "./users.actions";
 
 export const USERS_FEATURE_KEY = 'users';
 
-function addUserOrdered(list: User[], user: User){
-    let updatedList = list.concat(user);
-
-    return updatedList.sort((a, b)=> {
-        if (a.correlationId < b.correlationId){
-            return 1
-        }
-        if (a.correlationId > b.correlationId){
-            return -1
-        }
-        return 0
-    });
+function updateUserList(list: User[], user: User) {
+    let newList = [...list];
+    let index = newList.findIndex(u => u.correlationId === user.correlationId);
+    newList[index] = {
+        ...newList[index],
+        displayName: user.displayName,
+        email: user.email
+    }
+    return newList;
 }
 
 export interface UsersState {
@@ -48,6 +45,19 @@ const reducer = createReducer(
         ...state,
         usersLoaded: true,
         usersList: state.usersList.concat(action.user)
+    })),
+    on(UsersGenericActions.editUserButtonCliked, (state, action) => ({
+        ...state,
+        currentUser: action.data
+    })),
+    on(UserEditionActions.userEditionSucceeded, (state, action) => ({
+        ...state,
+        usersLoaded: false
+    })),
+    on(UsersGenericActions.updateUserInList, (state, action) => ({
+        ...state,
+        usersLoaded: true,
+        usersList: updateUserList(action.usersList, action.user)
     }))
 );
 

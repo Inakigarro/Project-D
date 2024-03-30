@@ -3,6 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { UsersRoutingComponent } from "./users-routing.component";
 import { UserListComponent } from "./feature/user-list/user-list.component";
 import { UserCreationFormComponent } from "./feature/user-creation-form/user-creation-form.component";
+import { UserEditionFormComponent } from "./feature/user-edition-form/user-edition-form.component";
 
 const routes : Routes = [
     {
@@ -16,8 +17,12 @@ const routes : Routes = [
                     {
                         path: 'new',
                         component: UserCreationFormComponent
+                    },
+                    {
+                        path: ':userId',
+                        component: UserEditionFormComponent
                     }
-                ]
+                ],
             }
         ]
     }
