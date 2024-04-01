@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { UsersQuery } from "../graphql/queries/users-query";
 import { UserCreationActions, UserEditionActions, UsersGenericActions } from "./users.actions";
-import { combineLatestWith, filter, map, take, tap, withLatestFrom } from "rxjs";
+import { combineLatestWith, filter, map, take, tap } from "rxjs";
 import { fetch, pessimisticUpdate } from '@nx/angular'
 import { AddUserMutation } from "../graphql/mutations/add-user-mutation";
 import { CreateUser, UpdateUser, User } from "../../shared";
@@ -140,21 +140,13 @@ export class UsersEffects {
     
     public updateUserList$ = createEffect(() =>
         this.actions$.pipe(
-            ofType(UserCreationActions.userCreationSucceeded),
+            ofType(
+                UserCreationActions.userCreationSucceeded,
+                UserEditionActions.userEditionSucceeded),
             map((action) => UsersGenericActions.usersListUpdated({
                 user: action.user
             }))
         ));
-    
-    public updateUserInList$ = createEffect(() =>
-        this.actions$.pipe(
-            ofType(UserEditionActions.userEditionSucceeded),
-            combineLatestWith(this.usersService.usersList$),
-            map(([action, userList]) => UsersGenericActions.updateUserInList({
-                usersList: userList,
-                user: action.user
-            }))
-        ))
 
     constructor(
         private readonly actions$: Actions,

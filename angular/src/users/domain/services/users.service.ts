@@ -13,7 +13,7 @@ export class UsersService {
         private router: Router){}
 
     public usersLoaded$ = this.store.select(UsersSelectors.selectUsersLoaded);
-    public usersList$ = this.store.select(UsersSelectors.selectUsersList);
+    public usersList$ = this.store.select(UsersSelectors.selectAllUsers);
     public currentUser$ = this.store.select(UsersSelectors.selectCurrentUser);
 
     public dispatch(action: Action){
