@@ -1,54 +1,59 @@
 import { Action, createReducer, on } from "@ngrx/store";
 import { User } from "../../shared";
-import { UserCreationActions, UsersGenericActions } from "./users.actions";
+import { UserCreationActions, UserEditionActions, UsersGenericActions } from "./users.actions";
+import { EntityAdapter, EntityState, createEntityAdapter } from "@ngrx/entity";
 
 export const USERS_FEATURE_KEY = 'users';
 
-function addUserOrdered(list: User[], user: User){
-    let updatedList = list.concat(user);
-
-    return updatedList.sort((a, b)=> {
-        if (a.correlationId < b.correlationId){
-            return 1
-        }
-        if (a.correlationId > b.correlationId){
-            return -1
-        }
-        return 0
-    });
+export interface UsersState extends EntityState<User> {
+    usersLoaded: boolean,
+    currentUser?: User
 }
 
-export interface UsersState {
-    usersLoaded: boolean;
-    usersList: User[];
-    currentUser?: User;
+export function selectUserId(a: User): string {
+    //In this case this would be optional since primary key is id
+    return a.correlationId;
 }
+
+export function sortByName(a: User, b: User): number {
+    return a.displayName.localeCompare(b.displayName);
+}
+
+export const usersAdapter: EntityAdapter<User> = createEntityAdapter<User>({
+    selectId: selectUserId,
+    sortComparer: sortByName
+});
 
 export interface UsersPartialState {
     readonly [USERS_FEATURE_KEY]: UsersState;
 }
 
-export const initialState: UsersState = {
+export const initialState = usersAdapter.getInitialState({
     usersLoaded: false,
-    usersList: []
-}
+});
 
 const reducer = createReducer(
     initialState,
-    on(UsersGenericActions.usersListLoaded, (state, action) =>({
-        ...state,
-        usersLoaded: true,
-        usersList: action.usersList
+    on(UsersGenericActions.usersListLoaded, (state, action) => ({
+        ...usersAdapter.setAll(action.usersList, state),
+        usersLoaded: true
     })),
     on(UserCreationActions.userCreationSucceeded, state =>({
         ...state,
         usersLoaded: false,
     })),
     on(UsersGenericActions.usersListUpdated, (state, action) => ({
+        ...usersAdapter.upsertOne(action.user, state),
+        usersLoaded: true
+    })),
+    on(UsersGenericActions.editUserButtonCliked, (state, action) => ({
         ...state,
-        usersLoaded: true,
-        usersList: state.usersList.concat(action.user)
-    }))
+        currentUser: action.data
+    })),
+    on(UserEditionActions.userEditionSucceeded, (state, action) => ({
+        ...state,
+        usersLoaded: false
+    })),
 );
 
 export function usersReducer(state: UsersState, action: Action){

@@ -7,5 +7,6 @@ export interface DynamicFormField<TItem> {
     type: FormType;
     defaultValue: unknown,
     disabled: boolean,
-    validators: Validators
+    validators: Validators,
+    hidden: boolean
 }

@@ -6,5 +6,5 @@ public interface IUsersService
 {
     Task<UserUpdated> Add(CreateOrUpdateUser createUser);
     Task<UserUpdated> Update(CreateOrUpdateUser updateUser);
-    Task<IEnumerable<UserUpdated>> GetAllAsync();
+    Task<IQueryable<UserUpdated>> GetAllAsync();
 }

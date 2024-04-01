@@ -32,9 +32,10 @@ public class UsersService : IUsersService
         return result.Message;
     }
     
-    public async Task<IEnumerable<UserUpdated>> GetAllAsync()
+    public async Task<IQueryable<UserUpdated>> GetAllAsync()
     {
         var users = await this.getUsersRequestClient.GetResponse<GetAllUsersReponse>(new GetAllUsers());
-        return users.Message.Users;
+        
+        return users.Message.Users.AsQueryable();
     }
 }

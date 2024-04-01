@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { CreateUser } from "../../shared";
 import { FormGroup, Validators } from "@angular/forms";
 import { MatDialogRef } from "@angular/material/dialog";
@@ -28,14 +28,16 @@ export class UserCreationFormComponent implements OnInit, OnDestroy {
                 type: 'input',
                 defaultValue: '',
                 disabled: false,
-                validators: [Validators.required, Validators.maxLength(140)]
+                validators: [Validators.required, Validators.maxLength(140)],
+                hidden: false
             })
             .addFormField({
                 name: 'email',
                 type: 'input',
                 defaultValue: '',
                 disabled: false,
-                validators: [Validators.required, Validators.maxLength(140), Validators.email]
+                validators: [Validators.required, Validators.maxLength(140), Validators.email],
+                hidden: false,
             });
         this.form = this.dynamicFormBuilder.buildForm();
     }

@@ -4,8 +4,6 @@ using Project_D.Api.GraphQl;
 using Project_D.Api.GraphQl.UpdateUserMutation;
 using Project_D.Api.Services;
 
-const string allowedOrigin = "allowedOrigin";
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -39,7 +37,8 @@ builder.Services.AddGraphQLServer()
     .AddType<UserType>()
     .AddTypeExtension<UsersQueryResolver>()
     .AddTypeExtension<CreateUserMutationExtension>()
-    .AddTypeExtension<UpdateUserMutationExtension>();
+    .AddTypeExtension<UpdateUserMutationExtension>()
+    .AddFiltering();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.

@@ -15,6 +15,7 @@ public class UsersQueryResolver : ObjectTypeExtension<Query>
                 var userService = context.RequestServices.GetRequiredService<IUsersService>();
                 var users = await userService.GetAllAsync();
                 return users;
-            });
+            })
+            .UseFiltering<UsersFilterType>();
     }
 }
