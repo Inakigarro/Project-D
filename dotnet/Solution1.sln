@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IGarro.Users.Domain", "serv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IGarro.Users.Persistence", "services\Users\IGarro.Users.Persistence\IGarro.Users.Persistence.csproj", "{BD8ACEBB-24CD-4751-987B-24B40126B8EB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IGarro.Users.Testing", "services\Users\IGarro.Users.Testing\IGarro.Users.Testing.csproj", "{AF307475-A4C1-4C3F-8D49-DD3AEE60B1D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,7 @@ Global
 		{13B03341-25FD-4517-850E-F749161DF1C4} = {CB2F6E71-0595-4657-85AC-9B118454D2EC}
 		{197BE4A2-D92F-429E-8B11-CCEEB88240C7} = {CB2F6E71-0595-4657-85AC-9B118454D2EC}
 		{BD8ACEBB-24CD-4751-987B-24B40126B8EB} = {CB2F6E71-0595-4657-85AC-9B118454D2EC}
+		{AF307475-A4C1-4C3F-8D49-DD3AEE60B1D1} = {CB2F6E71-0595-4657-85AC-9B118454D2EC}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{3B9C4110-01C7-4BB8-BB33-CBB00C766436}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -47,5 +50,9 @@ Global
 		{BD8ACEBB-24CD-4751-987B-24B40126B8EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD8ACEBB-24CD-4751-987B-24B40126B8EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD8ACEBB-24CD-4751-987B-24B40126B8EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF307475-A4C1-4C3F-8D49-DD3AEE60B1D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF307475-A4C1-4C3F-8D49-DD3AEE60B1D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF307475-A4C1-4C3F-8D49-DD3AEE60B1D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF307475-A4C1-4C3F-8D49-DD3AEE60B1D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
