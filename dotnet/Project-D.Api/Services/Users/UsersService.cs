@@ -1,21 +1,17 @@
 using IGarro.Users.Application.Contracts;
 using MassTransit;
-using Project_D.Api.GraphQl;
 
 namespace Project_D.Api.Services;
 
 public class UsersService : IUsersService
 {
-    private readonly IPublishEndpoint publishEndpoint;
     private readonly IRequestClient<GetAllUsers> getUsersRequestClient;
     private readonly IRequestClient<CreateOrUpdateUser> createOrUpdateUserRequestClient;
     
     public UsersService(
-        IPublishEndpoint publishEndpoint,
         IRequestClient<GetAllUsers> getUsersRequestClient,
         IRequestClient<CreateOrUpdateUser> createOrUpdateUserRequestClient)
     {
-        this.publishEndpoint = publishEndpoint;
         this.getUsersRequestClient = getUsersRequestClient;
         this.createOrUpdateUserRequestClient = createOrUpdateUserRequestClient;
     }

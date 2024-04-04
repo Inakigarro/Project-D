@@ -10,7 +10,7 @@ export interface CreateUser {
 }
 
 export interface UpdateUser {
-    correlationId: string;
-    displayName: string;
-    email: string;
+    correlationId?: string;
+    displayName?: string;
+    email?: string;
 }
