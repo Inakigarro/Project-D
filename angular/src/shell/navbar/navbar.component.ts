@@ -1,5 +1,6 @@
 import { Component, Input } from "@angular/core";
-import { BasicButton } from "../../components/buttons";
+import { NavigationService } from "../../app/navigation.service";
+import { NavigationButton } from "../../components/buttons/model";
 
 @Component({
     selector: 'ig-navbar',
@@ -7,7 +8,7 @@ import { BasicButton } from "../../components/buttons";
     styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
-    public UsersNavigationButton : BasicButton = {
+    public UsersNavigationButton : NavigationButton = {
         buttonDefinition: {
             buttonType: 'normal',
             kind: 'raised',
@@ -15,7 +16,25 @@ export class NavbarComponent {
         },
         label: 'Users',
         disabled: false,
+        url: 'users'
+    }
+
+    public SportsNavigationButton : NavigationButton = {
+        buttonDefinition: {
+            buttonType: 'normal',
+            kind: 'raised',
+            type: 'basic'
+        },
+        label: 'Sports',
+        disabled: false,
+        url: 'sports'
     }
     @Input()
     public opened = true;
+
+    constructor(private navigationService: NavigationService){}
+
+    public navigate(url: string){
+        this.navigationService.navigate([url]);
+    }
 }

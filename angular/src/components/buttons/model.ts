@@ -16,3 +16,7 @@ export interface BasicButton {
 export interface FormButton extends BasicButton {
     action?: Action;
 }
+
+export interface NavigationButton extends BasicButton {
+    url: string;
+}
