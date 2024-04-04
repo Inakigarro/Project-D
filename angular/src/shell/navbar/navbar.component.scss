@@ -8,3 +8,9 @@ mat-sidenav-container {
 mat-sidenav{
     width: $sidenav-width;
 }
+
+.sidenav-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
