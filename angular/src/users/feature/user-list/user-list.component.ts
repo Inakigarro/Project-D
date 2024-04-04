@@ -31,6 +31,7 @@ export class UserListComponent {
                     id: USER_CREATION_FORM_ID,
                     width: '35%',
                     height: 'auto',
+                    disableClose: true
         }}))
     }
 }

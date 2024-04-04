@@ -11,7 +11,10 @@ const MaterialModule = [
 
 @NgModule({
     declarations: [NavbarComponent],
-    imports: [CommonModule, MaterialModule, ButtonsModule],
+    imports: [
+        CommonModule,
+        MaterialModule,
+        ButtonsModule],
     exports: [NavbarComponent]
 })
 export class NavbarModule {}

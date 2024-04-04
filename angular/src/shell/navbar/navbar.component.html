@@ -10,10 +10,19 @@
 				[buttonDefinition]="UsersNavigationButton.buttonDefinition"
 				[label]="UsersNavigationButton.label"
 				[disabled]="UsersNavigationButton.disabled"
+				(executed)="navigate(UsersNavigationButton.url)"
+			></ig-button>
+
+			<ig-button
+				class="sidenav-button"
+				[buttonDefinition]="SportsNavigationButton.buttonDefinition"
+				[label]="SportsNavigationButton.label"
+				[disabled]="SportsNavigationButton.disabled"
+				(executed)="navigate(SportsNavigationButton.url)"
 			></ig-button>
 		</mat-nav-list>
 	</mat-sidenav>
-	<mat-sidenav-content>
+	<mat-sidenav-content class="sidenav-content">
 		<ng-content></ng-content>
 	</mat-sidenav-content>
 </mat-sidenav-container>
