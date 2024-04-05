@@ -28,16 +28,23 @@ builder.Services.AddMassTransit(x =>
 
 builder.Services.AddControllers();
 builder.Services.AddScoped<IUsersService, UsersService>();
+builder.Services.AddScoped<ISportsService, SportsService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddGraphQLServer()
     .AddQueryType<Query>()
     .AddMutationType<Mutation>()
+    // Users
     .AddType<UserType>()
     .AddTypeExtension<UsersQueryResolver>()
     .AddTypeExtension<CreateUserMutationExtension>()
     .AddTypeExtension<UpdateUserMutationExtension>()
+    // Sports
+    .AddType<SportType>()
+    .AddTypeExtension<SportsQueryResolver>()
+    .AddTypeExtension<CreateSportMutationExtension>()
+    .AddTypeExtension<UpdateSportMutationExtension>()
     .AddFiltering();
 
 var app = builder.Build();

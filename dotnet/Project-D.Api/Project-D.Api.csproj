@@ -21,6 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\services\Sports\IGarro.Sports.Application.Contracts\IGarro.Sports.Application.Contracts.csproj" />
       <ProjectReference Include="..\services\Users\IGarro.Users.Application.Contracts\IGarro.Users.Application.Contracts.csproj" />
     </ItemGroup>
 
