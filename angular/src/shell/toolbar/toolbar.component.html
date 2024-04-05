@@ -1,13 +1,24 @@
 <mat-toolbar class="toolbar">
-	<button mat-icon-button>
+	<button
+		mat-icon-button
+		(click)="toggleMenu()"
+	>
 		<mat-icon class="menu-button">menu</mat-icon>
 	</button>
 	<span>My App</span>
 	<span class="spacer"></span>
 	<button
 		mat-icon-button
-		(click)="toggleTheme()"
+		[matMenuTriggerFor]="profileMenu"
 	>
 		<mat-icon>account_circle</mat-icon>
 	</button>
+	<mat-menu #profileMenu="matMenu">
+		<button
+			mat-menu-item
+			(click)="toggleTheme()"
+		>
+			Toggle Theme
+		</button>
+	</mat-menu>
 </mat-toolbar>
