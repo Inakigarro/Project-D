@@ -1,4 +1,5 @@
 using IGarro.Sports.Application.Contracts;
+using MassTransit;
 using Project_D.Api.Services;
 
 namespace Project_D.Api.GraphQl;
@@ -12,8 +13,13 @@ public class CreateSportMutationResolver
         this.sportsService = sportsService;
     }
 
-    public async Task<SportUpdated> AddSport(CreateOrUpdateSport createSport)
+    public async Task<SportUpdated> AddSport(CreateSport createSport)
     {
-        return await this.sportsService.Add(createSport);
+        CreateOrUpdateSport message = new CreateOrUpdateSport()
+        {
+            CorrelationId = NewId.NextGuid(),
+            DisplayName = createSport.DisplayName,
+        };
+        return await this.sportsService.Add(message);
     }
 }

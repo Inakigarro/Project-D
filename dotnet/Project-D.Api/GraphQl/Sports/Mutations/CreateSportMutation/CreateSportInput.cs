@@ -2,9 +2,9 @@ using IGarro.Sports.Application.Contracts;
 
 namespace Project_D.Api.GraphQl;
 
-public class CreateSportInput : InputObjectType<CreateOrUpdateSport>
+public class CreateSportInput : InputObjectType<CreateSport>
 {
-    protected override void Configure(IInputObjectTypeDescriptor<CreateOrUpdateSport> descriptor)
+    protected override void Configure(IInputObjectTypeDescriptor<CreateSport> descriptor)
     {
         descriptor
             .Name("CreateSportInput");

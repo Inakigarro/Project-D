@@ -48,12 +48,13 @@ export class UsersEffects {
         this.actions$.pipe(
             ofType(routerNavigatedAction),
             switchMap(() => this.routerService.routerUrl$.pipe(take(1))),
-            filter(url => url.includes('new')),
+            filter(url => url.includes('users/new')),
             map(() => UserCreationActions.openCreationDialog({
                 dialogConfig: {
                     id: USER_CREATION_FORM_ID,
                     width: '35%',
                     height: 'auto',
+                    disableClose: true
                 }
             }))
         ));
@@ -73,7 +74,7 @@ export class UsersEffects {
                 }).valueChanges.pipe(
                     take(1),
                     map(result => UsersGenericActions.editUserButtonCliked({
-                        listId: params['userId'],
+                        listId: USERS_LIST_ID,
                         data: result.data.users[0]
                     }))
                 ),

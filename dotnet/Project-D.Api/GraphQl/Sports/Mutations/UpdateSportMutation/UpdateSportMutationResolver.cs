@@ -12,8 +12,13 @@ public class UpdateSportMutationResolver
         this.sportsService = sportsService;
     }
 
-    public async Task<SportUpdated> UpdateSport(CreateOrUpdateSport updateSport)
+    public async Task<SportUpdated> UpdateSport(UpdateSport updateSport)
     {
-        return await this.sportsService.Update(updateSport);
+        CreateOrUpdateSport message = new CreateOrUpdateSport()
+        {
+            CorrelationId = updateSport.CorrelationId,
+            DisplayName = updateSport.DisplayName,
+        };
+        return await this.sportsService.Update(message);
     }
 }

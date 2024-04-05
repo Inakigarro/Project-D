@@ -57,7 +57,6 @@ export class UserEditionFormComponent implements OnInit, OnDestroy {
             }))
         
         this.form = this.dynamicFormBuilder.buildForm();
-        console.log(this.form);
     }
     ngOnDestroy(): void {
         this.destroy$.next({});
