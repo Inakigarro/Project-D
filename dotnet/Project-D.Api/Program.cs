@@ -1,7 +1,11 @@
 using System.Reflection;
 using MassTransit;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Project_D.Api.GraphQl;
 using Project_D.Api.GraphQl.UpdateUserMutation;
+using Project_D.Api.Persistence;
 using Project_D.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -33,6 +37,7 @@ builder.Services.AddScoped<ISportsService, SportsService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddGraphQLServer()
+    .AddAuthorization()
     .AddQueryType<Query>()
     .AddMutationType<Mutation>()
     // Users
@@ -47,6 +52,19 @@ builder.Services.AddGraphQLServer()
     .AddTypeExtension<UpdateSportMutationExtension>()
     .AddFiltering();
 
+builder.Services
+    .AddAuthorization()
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer();
+var connectionString = builder.Configuration.GetConnectionString("IgClub");
+builder.Services.AddDbContext<IdentityDbContext>(opts
+    => opts.UseSqlServer(connectionString,
+        assembly=>
+            assembly.MigrationsAssembly(typeof(IdentityDbContext).Assembly.FullName)));
+builder.Services
+    .AddIdentityApiEndpoints<IdentityUser>()
+    .AddEntityFrameworkStores<IdentityDbContext>();
+
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -58,12 +76,18 @@ if (app.Environment.IsDevelopment())
 app.UseCors(policyBuilder =>
 {
     policyBuilder.WithOrigins("http://localhost:4200").AllowAnyMethod();
-    policyBuilder.WithHeaders("content-type");
+    policyBuilder.WithHeaders("content-type", "authorization");
 });
 app.UseHttpsRedirection();
+app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers();
-app.MapGraphQL();
+app.MapControllers()
+    .WithOpenApi()
+    .RequireAuthorization();
+app.MapGraphQL()
+    .RequireAuthorization();
+
+app.MapIdentityApi<IdentityUser>();
 
 app.Run();

@@ -9,22 +9,35 @@
 		>
 			@for (field of formFields; track $index) {
 				@if (!field.hidden) {
-					@if (field.type == "input") {
-						<mat-form-field class="formField">
-							<mat-label>{{ humanizeLabel(field.name) }}</mat-label>
-							<input
-								matInput
-								formControlName="{{ field.name }}"
-							/>
-						</mat-form-field>
-					} @else {
-						<mat-form-field class="formField">
-							<mat-label>{{ humanizeLabel(field.name) }}</mat-label>
-							<textarea
-								matInput
-								formControlName="{{ field.name }}"
-							></textarea>
-						</mat-form-field>
+					@switch (field.type) {
+						@case ("password") {
+							<mat-form-field class="formField">
+								<mat-label>{{ humanizeLabel(field.name) }}</mat-label>
+								<input
+									matInput
+									type="password"
+									formControlName="{{ field.name }}"
+								/>
+							</mat-form-field>
+						}
+						@case ("text-area") {
+							<mat-form-field class="formField">
+								<mat-label>{{ humanizeLabel(field.name) }}</mat-label>
+								<textarea
+									matInput
+									formControlName="{{ field.name }}"
+								></textarea>
+							</mat-form-field>
+						}
+						@default {
+							<mat-form-field class="formField">
+								<mat-label>{{ humanizeLabel(field.name) }}</mat-label>
+								<input
+									matInput
+									formControlName="{{ field.name }}"
+								/>
+							</mat-form-field>
+						}
 					}
 				}
 			}

@@ -11,6 +11,10 @@ const routes : Routes = [
         loadChildren: () => import('../sports/sports.module').then(m => m.SportsModule)
     },
     {
+        path: 'identity',
+        loadChildren: () => import('../identity/identity.module').then(m => m.IdentityModule)
+    },
+    {
         path: '',
         redirectTo: 'users',
         pathMatch: 'full'
