@@ -1,5 +1,6 @@
 @use 'sass:map';
 @use '@angular/material' as mat;
+@use './app/app.theme.scss' as app;
 @use './components/lists/list/list-theme.component.scss' as list;
 @use './components/forms/forms-theme.scss' as forms;
 @use './components/buttons/button-theme.scss' as buttons;
@@ -146,6 +147,7 @@ body.light-theme{
     @include list.theme($custom-light-theme);
     @include forms.theme($custom-light-theme);
     @include buttons.theme($custom-light-theme);
+    @include app.theme($custom-light-theme);
 }
 
 body.dark-theme{
@@ -156,4 +158,10 @@ body.dark-theme{
     @include list.theme($custom-dark-theme);
     @include forms.theme($custom-dark-theme);
     @include buttons.theme($custom-dark-theme);
+    @include app.theme($custom-dark-theme);
+}
+
+ig-identity {
+    display:block;
+    width: 40%;
 }
