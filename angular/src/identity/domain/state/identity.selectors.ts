@@ -1,5 +1,6 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { IDENTITY_FEATURE_ID, IdentityState } from "./identity.reducer";
+import { filter } from "rxjs";
 
 export const getIdentityState = createFeatureSelector<IdentityState>(IDENTITY_FEATURE_ID);
 

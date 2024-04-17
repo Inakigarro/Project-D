@@ -20,7 +20,9 @@ builder.Services.AddMassTransit(x =>
     var entryAssembly = Assembly.GetEntryAssembly();
     x.UsingRabbitMq((ctx, cfg) =>
     {
-        cfg.Host("localhost", "/", h =>
+        bool isRunningInContainer = bool.TryParse(Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER"),
+            out var inDocker) && inDocker;
+        cfg.Host(isRunningInContainer ? "rabbitmq" : "localhost", "/", h =>
         {
             h.Username("guest");
             h.Password("guest");
@@ -72,6 +74,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<IdentityDbContext>();
+    db.Database.Migrate();
+}
+
 
 app.UseCors(policyBuilder =>
 {

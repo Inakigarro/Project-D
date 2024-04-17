@@ -5,7 +5,7 @@ import { FormsActions } from "../../../components/forms/form/state/form.actions"
 import { filter, map, switchMap, take, tap } from "rxjs";
 import { REGISTER_USER_FORM_ID } from "../../register/register-user.component";
 import { LoginUser, RegisterUser } from "../../models";
-import { userLoggedInSuccessfuly, userRegisteredSuccessfuly } from "./identity.actions";
+import { userLogOutRequested, userLoggedInSuccessfuly, userRegisteredSuccessfuly } from "./identity.actions";
 import { LOGIN_USER_FORM_ID } from "../../login/login.component";
 import { NavigationService } from "../../../app/navigation.service";
 
@@ -34,6 +34,15 @@ export class IdentityEffects {
         this.actions.pipe(
             ofType(userLoggedInSuccessfuly),
             tap(() => this.navigationService.navigate(['/'], false))
+        ), {dispatch: false});
+
+    public userLogOutRequested$ = createEffect(() =>
+        this.actions.pipe(
+            ofType(userLogOutRequested),
+            tap(() => {
+                this.identityService.logout();
+                this.navigationService.navigate(['/'], false)
+            })
         ), {dispatch: false})
 
     constructor(

@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from "@ngrx/store";
-import { userLoggedInSuccessfuly } from "./identity.actions";
+import { userLogOutRequested, userLoggedInSuccessfuly } from "./identity.actions";
 
 export const IDENTITY_FEATURE_ID = 'identity';
 
@@ -29,6 +29,13 @@ export const identityReducer = createReducer(
         accessToken: action.token.accessToken,
         expiresIn: action.token.expiresIn,
         refreshToken: action.token.refreshToken,
+    })),
+    on(userLogOutRequested, (state) => ({
+        ...state,
+        tokenType: '',
+        accessToken: '',
+        expiresIn: 0,
+        refreshToken: '',
     }))
 );
 

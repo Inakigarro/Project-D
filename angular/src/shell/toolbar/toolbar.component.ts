@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { Store, createAction } from "@ngrx/store";
+import { userLogOutRequested } from "../../identity/domain/state/identity.actions";
 
 const toggleMenu = createAction(
   '[Toolbar] Toggle Menu'
@@ -25,5 +26,9 @@ export class ToolbarComponent {
           document.body.classList.remove('light-theme');
           document.body.classList.add('dark-theme');
         }
+      }
+    
+      logout() {
+        this.store.dispatch(userLogOutRequested());
       }
 }
