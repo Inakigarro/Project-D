@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { Store, createAction } from "@ngrx/store";
 import { userLogOutRequested } from "../../identity/domain/state/identity.actions";
+import { IdentityService } from "../../identity/identity.service";
 
 const toggleMenu = createAction(
   '[Toolbar] Toggle Menu'
@@ -12,10 +13,10 @@ const toggleMenu = createAction(
     styleUrl: './toolbar.component.scss'
 })
 export class ToolbarComponent {
-    constructor(private store: Store){}
+    constructor(private readonly identityService: IdentityService){}
 
     toggleMenu(){
-      this.store.dispatch(toggleMenu())
+      this.identityService.dispatch(toggleMenu())
     }
 
     toggleTheme(){
@@ -29,6 +30,6 @@ export class ToolbarComponent {
       }
     
       logout() {
-        this.store.dispatch(userLogOutRequested());
+        this.identityService.logout();
       }
 }

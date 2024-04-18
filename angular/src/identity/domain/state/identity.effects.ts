@@ -40,8 +40,7 @@ export class IdentityEffects {
         this.actions.pipe(
             ofType(userLogOutRequested),
             tap(() => {
-                this.identityService.logout();
-                this.navigationService.navigate(['/'], false)
+                this.navigationService.navigate(['identity', 'login'], false)
             })
         ), {dispatch: false})
 

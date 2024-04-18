@@ -44,7 +44,6 @@ export class IdentityService {
 
     public logout() {
         this.dispatch(userLogOutRequested());
-        this.removeToken();
     }
 
     public dispatch(action: Action) {
