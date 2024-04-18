@@ -1,8 +1,10 @@
+using System;
 using System.Threading.Tasks;
 using IGarro.Users.Persistence;
 using Microsoft.Extensions.Hosting;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace IGarro.Users.Application;
@@ -11,12 +13,20 @@ public class Program
 {
     public static async Task Main(string[] args)
     {
-        await CreateHostBuilder(args).Build().RunAsync();
+        var app = CreateHostBuilder(args).Build();
+
+        using (var scope = app.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<UsersDbContext>();
+            await db.Database.MigrateAsync();
+        }
+
+        await app.RunAsync();
     }
 
     public static IHostBuilder CreateHostBuilder(string[] args) =>
         Host.CreateDefaultBuilder(args)
-            .ConfigureServices((_, services) =>
+            .ConfigureServices((builderContext, services) =>
             {
                 services.AddAutoMapper(opts =>
                 {
@@ -31,7 +41,9 @@ public class Program
                     
                     x.UsingRabbitMq((ctx, cfg) =>
                     {
-                        cfg.Host("localhost", "/", h =>
+                        bool isRunningInContainer = bool.TryParse(Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER"),
+                            out var inDocker) && inDocker;
+                        cfg.Host(isRunningInContainer ? "rabbitmq" : "localhost", "/", h =>
                         {
                             h.Username("guest");
                             h.Password("guest");
@@ -40,15 +52,14 @@ public class Program
                         cfg.ConfigureEndpoints(ctx);
                     });
                 });
-
+                var connectionString = builderContext.Configuration.GetConnectionString("IgClub");
                 services.AddDbContext<UsersDbContext>(
                     options =>
                     {
-                        options.UseSqlServer(
-                            "Server=localhost;Database=IG.Club;User Id=sa;Password=Development001;Trusted_Connection=True;TrustServerCertificate=True",
-                            assembly => assembly.MigrationsAssembly(typeof(UsersDbContext).Assembly.FullName));
+                        options.UseSqlServer(connectionString,assembly =>
+                            assembly.MigrationsAssembly(typeof(UsersDbContext).Assembly.FullName));
                     });
-
+                
                 services.AddScoped<IUsersRepository, UsersRepository>();
             });
 }

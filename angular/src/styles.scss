@@ -1,4 +1,167 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'sass:map';
+@use '@angular/material' as mat;
+@use './app/app.theme.scss' as app;
+@use './components/lists/list/list-theme.component.scss' as list;
+@use './components/forms/forms-theme.scss' as forms;
+@use './components/buttons/button-theme.scss' as buttons;
+@use './shell/toolbar/toolbar-theme.scss' as toolbar;
+@use './shell/navbar/sidenav-theme.scss' as navbar;
+@use './users/users-theme.scss' as users;
+
+@include mat.core();
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+$custom-light-primary-palette: (
+    50: #E0F2F1,
+    100: #B2DFDB,
+    200: #80CBC4,
+    300: #4DB6AC,
+    400: #26A69A,
+    500: #009688,
+    600: #00897B,
+    700: #00796B,
+    800: #00695C,
+    900: #004D40,
+    contrast: (
+        50: #000,
+        100: #000,
+        200: #000,
+        300: #fff,
+        400: #fff,
+        500: #fff,
+        600: #fff,
+        700: #fff,
+        800: #fff,
+        900: #fff,
+    )
+);
+
+$custom-dark-primary-palette: (
+    50: #ECEFF1,
+    100: #CFD8DC,
+    200: #B0BEC5,
+    300: #90A4AE,
+    400: #78909C,
+    500: #607D8B,
+    600: #546E7A,
+    700: #455A64,
+    800: #37474F,
+    900: #263238,
+    contrast: (
+        50: #000,
+        100: #000,
+        200: #000,
+        300: #fff,
+        400: #fff,
+        500: #fff,
+        600: #fff,
+        700: #fff,
+        800: #fff,
+        900: #fff,
+    )
+);
+
+$custom-accent-palette: (
+    50: #F9FBE7,
+    100: #F0F4C3,
+    200: #E6EE9C,
+    300: #DCE775,
+    400: #D4E157,
+    500: #CDDC39,
+    600: #C0CA33,
+    700: #AFB42B,
+    800: #9E9D24,
+    900: #827717,
+    contrast: (
+        50: #000,
+        100: #000,
+        200: #000,
+        300: #fff,
+        400: #fff,
+        500: #fff,
+        600: #fff,
+        700: #fff,
+        800: #fff,
+        900: #fff,
+    )
+);
+
+$custom-warn-palette: (
+    50: #FFEBEE,
+    100: #FFCDD2,
+    200: #EF9A9A,
+    300: #E57373,
+    400: #EF5350,
+    500: #F44336,
+    600: #E53935,
+    700: #D32F2F,
+    800: #C62828,
+    900: #B71C1C,
+    contrast: (
+        50: #000,
+        100: #000,
+        200: #000,
+        300: #fff,
+        400: #fff,
+        500: #fff,
+        600: #fff,
+        700: #fff,
+        800: #fff,
+        900: #fff,
+    )
+);
+
+$custom-light-primary: mat.define-palette($custom-light-primary-palette);
+$custom-dark-primary: mat.define-palette($custom-dark-primary-palette);
+$custom-accent: mat.define-palette($custom-accent-palette);
+$custom-warn: mat.define-palette($custom-warn-palette);
+
+$custom-light-theme: mat.define-light-theme(
+    (
+        color: (
+            primary: $custom-light-primary,
+            accent: $custom-accent,
+            warn: $custom-warn
+        ),
+        density: 0,
+    )
+);
+
+$custom-dark-theme: mat.define-dark-theme(
+    (
+        color: (
+            primary: $custom-dark-primary,
+            accent: $custom-accent,
+            warn: $custom-warn,
+        ),
+    )
+);
+
+body.light-theme{
+    @include mat.all-component-themes($custom-light-theme);
+    @include toolbar.theme($custom-light-theme);
+    @include navbar.theme($custom-light-theme);
+    @include users.theme($custom-light-theme);
+    @include list.theme($custom-light-theme);
+    @include forms.theme($custom-light-theme);
+    @include buttons.theme($custom-light-theme);
+    @include app.theme($custom-light-theme);
+}
+
+body.dark-theme{
+    @include mat.all-component-colors($custom-dark-theme);
+    @include toolbar.theme($custom-dark-theme);
+    @include navbar.theme($custom-dark-theme);
+    @include users.theme($custom-dark-theme);
+    @include list.theme($custom-dark-theme);
+    @include forms.theme($custom-dark-theme);
+    @include buttons.theme($custom-dark-theme);
+    @include app.theme($custom-dark-theme);
+}
+
+ig-identity {
+    display:block;
+    width: 40%;
+}

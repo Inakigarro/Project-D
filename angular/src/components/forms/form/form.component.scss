@@ -19,3 +19,11 @@ mat-card-footer {
     width: 100%;
     margin-bottom: 10px;
 }
+
+.form-footer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    column-gap: 15px;
+}

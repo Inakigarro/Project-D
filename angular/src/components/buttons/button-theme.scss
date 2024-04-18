@@ -1,0 +1,23 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin color($theme) {
+    $theme-type: mat.get-theme-type($theme);
+
+    .ig-raised-button {
+        color: white;
+        @if $theme-type == dark {
+            background-color: #27374D;
+        }
+
+        @if $theme-type == light {
+            background-color: #4CCD99;
+        }
+    }
+}
+
+@mixin theme($theme) {
+    @if mat.theme-has($theme, color) {
+      @include color($theme);
+    }
+}

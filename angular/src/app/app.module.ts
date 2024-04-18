@@ -11,12 +11,14 @@ import { NavbarModule } from '../shell/navbar/navbar.module';
 import { APOLLO_OPTIONS, ApolloModule } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 import { InMemoryCache } from '@apollo/client/core'
-import { HttpClientModule } from '@angular/common/http';
-import { uri } from './graphql.module';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { graphqlUri } from './graphql.module';
 import { StoreModule } from '@ngrx/store';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { IDENTITY_FEATURE_ID, identityReducer } from '../identity/domain/state/identity.reducer';
+import { AuthInterceptor } from './auth-interceptor';
 
 @NgModule({
     declarations: [AppComponent],
@@ -29,8 +31,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
         NavbarModule,
         RouterOutlet,
         AppRoutingModule,
-        StoreModule.forRoot({}, {}),
-        StoreRouterConnectingModule.forRoot(),
+        StoreModule.forRoot({routerReducer, identity: identityReducer}, {}),
+        StoreRouterConnectingModule.forRoot({stateKey: 'router-reducer'}),
         EffectsModule.forRoot([]),
         StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })],
     exports: [],
@@ -42,12 +44,17 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
           return {
             cache: new InMemoryCache(),
             link: httpLink.create({
-              uri: uri
+              uri: graphqlUri
             })
           }
         },
         deps: [HttpLink]
-      }
+      },
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: AuthInterceptor,
+        multi: true
+    }
     ],
     bootstrap: [AppComponent]
 })

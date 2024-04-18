@@ -1,4 +1,10 @@
-<ig-toolbar></ig-toolbar>
-<ig-navbar>
-    <router-outlet />
-</ig-navbar>
+@if (isLoggedIn) {
+	<ig-toolbar></ig-toolbar>
+	<ig-navbar>
+		<router-outlet />
+	</ig-navbar>
+} @else {
+	<div class="login-page">
+		<router-outlet></router-outlet>
+	</div>
+}

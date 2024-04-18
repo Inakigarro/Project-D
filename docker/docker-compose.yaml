@@ -1,0 +1,63 @@
+services:
+
+ # Infra.
+  development-db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: development-db
+    ports:
+      - 1433:1433
+    environment:
+      SA_PASSWORD: "DevPassword(!)001"
+      ACCEPT_EULA: "Y"
+  
+  rabbitmq:
+    image: masstransit/rabbitmq:latest
+    ports:
+      - 5672:5672
+      - 15672:15672
+      - 15692:15692
+    healthcheck:
+      timeout: 5s
+      interval: 5s
+      retries: 10
+      test:
+      - "CMD"
+      - "rabbitmqctl"
+      - "status"
+    depends_on:
+      development-db:
+        condition: service_started
+
+  # Services.
+  users:
+    image: igarro.users.application:latest
+    container_name: users
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    depends_on:
+      rabbitmq:
+        condition: service_started
+  sports:
+    image: igarro.sports.application:latest
+    container_name: sports
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    depends_on:
+      development-db:
+        condition: service_started
+      rabbitmq:
+        condition: service_started
+  api:
+    image: project-d.api:latest
+    container_name: api
+    ports:
+      - 8080:8080
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    depends_on:
+      rabbitmq:
+        condition: service_started
+      users:
+        condition: service_started
+      sports:
+        condition: service_started

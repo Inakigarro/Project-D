@@ -1,0 +1,20 @@
+<mat-toolbar class="list-toolbar">
+	<button
+		mat-raised-button
+		class="list-toolbar-button"
+		(click)="openSportCreationDialog()"
+	>
+		New
+	</button>
+</mat-toolbar>
+@if (loaded$) {
+	<ig-list
+		[listId]="listId"
+		[listTitle]="listTitle"
+		[listHeaders]="listHeaders"
+		[listData]="listData"
+	>
+	</ig-list>
+} @else {
+	<mat-spinner></mat-spinner>
+}

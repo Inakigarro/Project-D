@@ -10,7 +10,7 @@ export interface UsersState extends EntityState<User> {
     currentUser?: User
 }
 
-export function selectUserId(a: User): string {
+export function selectById(a: User): string {
     //In this case this would be optional since primary key is id
     return a.correlationId;
 }
@@ -20,7 +20,7 @@ export function sortByName(a: User, b: User): number {
 }
 
 export const usersAdapter: EntityAdapter<User> = createEntityAdapter<User>({
-    selectId: selectUserId,
+    selectId: selectById,
     sortComparer: sortByName
 });
 
