@@ -11,7 +11,6 @@ export interface UsersState extends EntityState<User> {
 }
 
 export function selectById(a: User): string {
-    //In this case this would be optional since primary key is id
     return a.correlationId;
 }
 
